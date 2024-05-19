@@ -161,4 +161,4 @@ cython_debug/
 db.sqlite3
 
 __pycache__/
-
+migrations/
