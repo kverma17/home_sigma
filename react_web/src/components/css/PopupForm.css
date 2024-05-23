@@ -1,0 +1,44 @@
+.popup-form-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* High z-index to ensure it is on top */
+}
+
+.popup-form {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px;
+  max-width: 90%;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1001; /* Ensure it is above the overlay */
+}
+
+.popup-form h2 {
+  margin-top: 0;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  margin-right: 30px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-group .error {
+  color: red;
+  font-size: 0.8em;
+}
+

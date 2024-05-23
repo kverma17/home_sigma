@@ -1,12 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 
-const DynamicButton = ({ buttonName, link }) => {
+const DynamicButton = ({ buttonName, handleClick }) => {
   const [isHovered, setIsHovered] = useState(false);
 
-  const handleClick = () => {
-    const baseUrl = window.location.origin;
-    window.location.href = `${baseUrl}${link}`;
-  };
 
   const buttonStyle = {
     padding: '10px 20px',
@@ -19,8 +15,8 @@ const DynamicButton = ({ buttonName, link }) => {
     cursor: 'pointer',
     textDecoration: 'none',
     transition: 'all 0.3s ease',
-    height: "50px",
-    margin:"10px"
+    height: '50px',
+    margin: '10px'
   };
 
   return (
@@ -29,6 +25,7 @@ const DynamicButton = ({ buttonName, link }) => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       style={buttonStyle}
+      aria-label={buttonName}
     >
       {buttonName}
     </button>

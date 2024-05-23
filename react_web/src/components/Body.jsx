@@ -69,9 +69,9 @@ const Body = ({ filterOptions }) => {
         {showFilters && (
           <div className="filters-dropdown">
             <div className="filter-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-  <span>Filters</span>
-  <FaTimes className="close-button" onClick={closeFilters} />
-</div>
+              <span>Filters</span>
+              <FaTimes className="close-button" onClick={closeFilters} />
+            </div>
             <div className="filter-group">
               <label>Listing Type</label>
               {generateFilterOptions(filterOptions.listingTypes)}

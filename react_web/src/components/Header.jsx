@@ -1,11 +1,19 @@
-import React from 'react'
-import Dropdown from './Dropdown'
+import React, { useState } from 'react'
 import logo from '../assets/logo.png';
-import BuyDropdown from './BuyDropdown';
 import DynamicDropdown from './DynamicDropdown';
 import DynamicButton from './Button';
+import PopupForm from './PopupForm';
 
 export default function Header() {
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const handleButtonClick = () => {
+    setIsPopupOpen(true);
+  };
+
+  const handleClosePopup = () => {
+    setIsPopupOpen(false);
+  };
   const buyOptions = {
     "Offplan Apartment": "/offplan-apartment",
     "Offplan Villas": "/offplan-villas",
@@ -34,7 +42,8 @@ export default function Header() {
       <DynamicDropdown dropdownName="Our Services" options={servicesOptions} />
       <DynamicDropdown dropdownName="About Us" options={aboutOptions} />
     </div>
-    <DynamicButton buttonName="Get In Touch" link="/contact-us"/>
+      <DynamicButton buttonName="Get In Touch" handleClick={handleButtonClick} />
+      {isPopupOpen && <PopupForm onClose={handleClosePopup} />}
   </div>
 </header>
 
