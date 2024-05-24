@@ -16,10 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from core.views import PropertyView, PropertyDetailView
+from core.views import PropertyView, PropertyDetailView, RentPropertyList, SellPropertyList
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('property/', PropertyView.as_view(), name="property-list"),
     path('property/<int:pk>/', PropertyDetailView.as_view(), name="property-detail"),
+    path('properties/rent/', RentPropertyList.as_view(), name='rent-properties'),
+    path('properties/sell/', SellPropertyList.as_view(), name='sell-properties'),
 ]
