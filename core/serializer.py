@@ -1,5 +1,11 @@
 from rest_framework import generics, serializers 
-from . models import Property, ListingType
+from . models import Property, ListingType, Header
+
+
+class HeaderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Header
+        fields = '__all__'
 
 
 class PropertySerializer(serializers.ModelSerializer): 
