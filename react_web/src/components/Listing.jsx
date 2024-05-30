@@ -3,8 +3,9 @@ import React, { useState } from 'react';
 import ListingCard from './ListingCard';
 import './css/Listings.css'; // Create CSS for your component if needed
 import DynamicButton from './Button';
+import { Link } from 'react-router-dom';
 
-const Listings = () => {
+const Listings = ({listingType}) => {
     const [isHovered, setIsHovered] = useState(false);
 
     const handleClick = () => {
@@ -39,43 +40,30 @@ const Listings = () => {
 
   return (
     <div>
-    <h1 style={{ margin: '30px' }}>Premium Luxury Developments</h1>
-    <div className="listings">
-      {listings.map(listing => (
-        <ListingCard
-          key={listing.name}
-          image={listing.image}
-          labels={listing.labels}
-          location={listing.location}
-          name={listing.name}
-          price={listing.price}
-          redirectTo={listing.redirectTo}
-        />
-      ))}
-      <button
-      onClick={handleClick}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      className='load-more'
-      style={{
-        padding: '10px 20px',
-        fontSize: '16px',
-        fontWeight: 'bold',
-        color: isHovered ? '#000080' : '#fff',
-        backgroundColor: isHovered ? '#fff' : '#000080',
-        border: isHovered ? '2px solid #000080' : 'none',
-        borderRadius: '5px',
-        cursor: 'pointer',
-        textDecoration: 'none',
-        transition: 'all 0.3s ease',
-        height: "50px",
-        width: "200px",
-        margin:"10px"}}
-    >
-      Load More Listings
-    </button>
-      {/* <button className="load-more">Load More Listings</button> */}
-    </div>
+      <h1 style={{ margin: '30px' }}>{listingType}</h1>
+      <div className="allListings">
+        <div className="listings">
+          {listings.map(listing => (
+            <Link to={`/property${listing.redirectTo}`} key={listing.name} className="listing-link">
+              <ListingCard
+                image={listing.image}
+                labels={listing.labels}
+                location={listing.location}
+                name={listing.name}
+                price={listing.price}
+              />
+            </Link>
+          ))}
+        </div>
+        <button
+          onClick={handleClick}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          className='load-more'
+        >
+          Load More Listings
+        </button>
+      </div>
     </div>
   );
 };

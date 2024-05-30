@@ -167,3 +167,9 @@
     text-decoration: none;
   }
   
+  @media screen and (max-width: 1100px) {
+    .z\-10{
+      position: relative;
+    }
+  }
+  
