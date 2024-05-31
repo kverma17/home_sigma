@@ -11,6 +11,7 @@ class Header(models.Model):
 
 
 class ListingType(models.Model):
+    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100, unique=True)
 
     def __str__(self):
@@ -25,9 +26,40 @@ class Property(models.Model):
     builder = models.CharField(max_length=30, blank=True)
     location = models.CharField(max_length=30, blank=True)
     price = models.IntegerField(null=True, blank=True)
+    attractions = models.CharField(max_length=255, blank=True)
     street = models.CharField(max_length=30, blank=True)
     city = models.CharField(max_length=30, blank=True)
     state = models.CharField(max_length=30, blank=True)
     zip = models.IntegerField(null=True, blank=True)
     country = models.CharField(max_length=30, blank=True)
     listing_types = models.ManyToManyField(ListingType)
+    created_at = models.DateTimeField(auto_now_add=True)
+    created_by = models.CharField(max_length=20)
+    updated_by = models.CharField(max_length=20)
+    updated_at = models.DateTimeField(auto_now=True, editable=False, blank=False, null=False)
+
+
+class Leads(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=30)
+    mobile = models.CharField(max_length=12)
+    email = models.EmailField()
+    generated_by = models.CharField(max_length=20)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+
+class LeadHistory(models.Model):
+    id = models.AutoField(primary_key=True)
+    lead_id = models.IntegerField()
+    comments = models.TextField()
+    updated_at = models.DateTimeField(auto_now=True, editable=False, blank=False, null=False)
+
+
+class PropertyImage(models.Model):
+    id = models.AutoField(primary_key=True)
+    property_id = models.IntegerField()
+    image_url = models.URLField(max_length=255)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.image_url

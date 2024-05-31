@@ -1,5 +1,5 @@
 from rest_framework import generics, serializers 
-from . models import Property, ListingType, Header
+from . models import Property, ListingType, Header, Leads, LeadHistory
 
 
 class HeaderSerializer(serializers.ModelSerializer):
@@ -12,7 +12,6 @@ class PropertySerializer(serializers.ModelSerializer):
 	class Meta: 
 		model = Property
 		fields = '__all__'
-		# fields = ['name', 'detail', 'description', 'builder', 'location', 'price', 'street', 'city', 'state', 'zip', 'country', 'listing_type']
 
 
 class RentPropertyList(generics.ListAPIView):
@@ -29,3 +28,16 @@ class SellPropertyList(generics.ListAPIView):
     def get_queryset(self):
         sell_listing_type = ListingType.objects.get(name='Sell')
         return Property.objects.filter(listing_types=sell_listing_type)
+
+
+class LeadsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Leads
+        fields = '__all__'
+
+
+
+class LeadHistorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = LeadHistory
+        fields = '__all__'

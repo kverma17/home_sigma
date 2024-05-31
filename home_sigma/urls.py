@@ -16,13 +16,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from core.views import PropertyView, PropertyDetailView, RentPropertyList, SellPropertyList, HeaderView
+from core.views import PropertyView, PropertyDetailView, RentPropertyList, SellPropertyList, HeaderView, LeadsView, LeadHistoryView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('header/', HeaderView.as_view(), name="header"),
-    path('property/', PropertyView.as_view(), name="property-list"),
+    path('property', PropertyView.as_view(), name="property-list"),
     path('property/<int:pk>/', PropertyDetailView.as_view(), name="property-detail"),
     path('properties/rent/', RentPropertyList.as_view(), name='rent-properties'),
     path('properties/sell/', SellPropertyList.as_view(), name='sell-properties'),
+    path('leads/', LeadsView.as_view(), name="leads"),
+    path('lead/<int:pk>/', LeadHistoryView.as_view(), name="leads-history"),
 ]
