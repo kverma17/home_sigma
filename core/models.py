@@ -20,7 +20,8 @@ class ListingType(models.Model):
 
 class Property(models.Model): 
     id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=30)
+    name = models.CharField(max_length=50)
+    url = models.CharField(max_length=50)
     detail = models.CharField(max_length=100, blank=True)
     description = models.CharField(max_length=500, blank=True)
     builder = models.CharField(max_length=30, blank=True)
@@ -34,17 +35,17 @@ class Property(models.Model):
     country = models.CharField(max_length=30, blank=True)
     listing_types = models.ManyToManyField(ListingType)
     created_at = models.DateTimeField(auto_now_add=True)
-    created_by = models.CharField(max_length=20)
-    updated_by = models.CharField(max_length=20)
+    created_by = models.CharField(max_length=32)
+    updated_by = models.CharField(max_length=32)
     updated_at = models.DateTimeField(auto_now=True, editable=False, blank=False, null=False)
 
 
 class Leads(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=30)
-    mobile = models.CharField(max_length=12)
-    email = models.EmailField()
-    generated_by = models.CharField(max_length=20)
+    mobile = models.CharField(max_length=12, blank=True)
+    email = models.EmailField(blank=True)
+    interests = models.CharField(max_length=30, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
 

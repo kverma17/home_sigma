@@ -1,4 +1,5 @@
 import json
+from django.db.models import Q
 from rest_framework import generics
 from rest_framework.views import APIView 
 from . models import *
@@ -29,7 +30,36 @@ class PropertyView(APIView):
 	serializer_class = PropertySerializer 
 
 	def get(self, request):
-		details = [PropertySerializer(property).data for property in Property.objects.all()]
+		query_params = request.GET
+		details = []
+		listing_type = query_params.get('type')
+		min_price = query_params.get('min_price')
+		max_price = query_params.get('max_price')
+		builder = query_params.get('builder')
+		location = query_params.get('location')
+		filters = Q()
+		if listing_type:
+			# Convert comma-separated string to list
+			listing_type_names = listing_type.split(',')
+			# Retrieve the IDs of the listing types
+			listing_type_ids = ListingType.objects.filter(name__in=listing_type_names).values_list('id', flat=True)
+			# Filter properties by listing type IDs
+			filters &= Q(listing_types__id__in=listing_type_ids)
+
+		if min_price is not None:
+			filters &= Q(price__gte=min_price)
+
+		if max_price is not None:
+			filters &= Q(price__lte=max_price)
+
+		if builder:
+			filters &= Q(builder__icontains=builder)
+
+		if location:
+			filters &= Q(location__icontains=location)
+		property_objs = Property.objects.filter(filters).distinct()
+		for property_obj in property_objs:
+			details.append(PropertySerializer(property_obj).data)
 		return Response(details) 
 
 	def post(self, request): 
