@@ -9,37 +9,14 @@ import './css/Header.css';
 export default function Header() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [menuData, setMenuData] = useState({});
+  const interestOptions = ['Condo / Apartment', 'Villas', 'Town House'];
 
   useEffect(() => {
     const fetchMenuData = async () => {
       try {
         const response = await axios.get('http://localhost:8000/header/');
         console.log("response>>>>",response.data)
-        setMenuData(response.data.header);
-        const data =
-        {
-          "header": {
-            "Buy": [
-              { "Offplan Apartments": "/offplan-apartments" },
-              { "Offplan Villas": "/offplan-villas" },
-              { "Luxury Projects": "/luxury-projects" }
-            ],
-            "Rent": [
-              { "Short Term Rentals": "/short-term-rentals" },
-              { "Apartment For Rent": "/apartment-for-rent" }
-            ],
-            "Our Services": [
-              { "Buy a Property": "/buy-a-property" },
-              { "Sell a Property": "/sell-a-property" }
-            ],
-            "About Us": [
-              { "About Home Sigma": "/about-home-sigma" },
-              { "Our Team": "/our-team" },
-              { "FAQ": "/faq" }
-            ]
-          }
-        }
-        setMenuData(data.header)
+        setMenuData(response.data);
       } catch (error) {
         console.error('Failed to fetch menu data:', error);
       }
@@ -73,7 +50,7 @@ export default function Header() {
         </div>
         <div className="button-container">
           <DynamicButton buttonName="Get In Touch" handleClick={handleButtonClick} />
-          {isPopupOpen && <PopupForm onClose={handleClosePopup} />}
+          {isPopupOpen && <PopupForm onClose={handleClosePopup} interestOptions={interestOptions} />}
         </div>
       </div>
     </header>

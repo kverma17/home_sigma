@@ -1,6 +1,7 @@
 import React from 'react';
 import Body from '../components/Body';
 import Listings from '../components/Listing';
+import FloatingButtons from '../components/FloatingButtion';
 
 const Home = ({ listingType }) => {
     const filterOptions = {
@@ -12,11 +13,13 @@ const Home = ({ listingType }) => {
     };
 
     return (
-        <div className="Home">
+        <div className="Home" style={{backgroundColor:'#efefef'}}>
             <Body filterOptions={filterOptions} />
             <Listings listingType={listingType} />
+            <FloatingButtons />
         </div>
     );
+    
 };
 
 export default Home;

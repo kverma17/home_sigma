@@ -7,7 +7,7 @@ function DynamicDropdown({ dropdownName, options }) {
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
-        <Menu.Button className="inline-flex justify-center items-center w-40 gap-1.5  bg-white px-3 py-2 text-sm font-semibold text-gray-700 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 gap-10">
+        <Menu.Button className="inline-flex justify-center items-center w-40 gap-1.5  bg-white px-3 py-2 text-sm font-semibold text-gray-700 shadow-sm ring-1 ring-inset ring-gray-300 hover: gap-10">
           {dropdownName}
           <ChevronDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
         </Menu.Button>

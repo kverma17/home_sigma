@@ -1,0 +1,52 @@
+.floating-buttons {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .floating-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background-color: #119a43; /* WhatsApp green color */
+    border-radius: 50%;
+    color: white;
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.3s;
+    font-size: 30px;
+  }
+  
+  .floating-button.phone {
+    background-color: #13aef0; 
+    transform: rotate(90deg); 
+  }
+
+  .floating-button.facebook {
+    background-color: #035679; 
+
+  }
+
+  .floating-button.insta {
+    background-color: #c612b1; 
+
+  }
+  
+  .floating-button:hover {
+    transform: scale(1.1);
+
+  }
+.floating-button.phone:hover {
+    transform: rotate(90deg) scale(1.1);
+  }
+  
+  
+  .floating-button:active {
+    transform: scale(0.9);
+  }
+  
