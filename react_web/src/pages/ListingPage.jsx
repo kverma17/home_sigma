@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Slider from 'react-slick';
 import './css/ListingPage.css';
@@ -7,54 +7,27 @@ import 'slick-carousel/slick/slick-theme.css';
 import DynamicButton from '../components/Button';
 import { FaShareAlt } from 'react-icons/fa';
 import { NextArrow, PrevArrow } from '../components/CustomArrows';
+import axios from 'axios';
 
 const ListingPage = () => {
     const { propertyId } = useParams();
+    const [menuData, setMenuData] = useState({});
     console.log("propertyId>>>", propertyId)
-    const data = {
-        id: 3,
-        name: "Tonino Lamborghini Residences",
-        detail: "Tonino Lamborghini Residences is a high-end development featuring artfully designed apartments with",
-        description: "Experience luxury living at Tonino Lamborghini Residences. These meticulously crafted apartments boast stunning design and functionality, seamlessly integrated with cutting-edge technology for a dynamic lifestyle. Residents enjoy a wealth of amenities, including private cinemas, lush landscapes, shopping, and family-friendly parks. Designed for comfort and sustainability, these Meydan City apartments epitomize Dubai’s luxury real estate market.",
-        builder: "Gulf Land Property Developers",
-        location: "Meydan City",
-        category: "Premium Luxury Developments",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvkL4qJtyIqgulLCOgMpwe1nopm5jnWqq_Eg&s",
-        gallery: [
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvkL4qJtyIqgulLCOgMpwe1nopm5jnWqq_Eg&s",
-            "https://mybayutcdn.bayut.com/mybayut/wp-content/uploads/Most-famous-buildings-in-Dubai-Cover-08-09-2020.jpg",
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIIVa8FTTPKSLXO9EKE-HeQMqSV4A0XJDb6Q&s",
-            "https://mybayutcdn.bayut.com/mybayut/wp-content/uploads/Most-famous-buildings-in-Dubai-Cover-08-09-2020.jpg",
-        ],
-        street: "",
-        city: "Dubai",
-        state: "",
-        zip: null,
-        country: "UAE",
-        brochureLink: "#",
-        registerLink: "#",
-        listing_types: [2],
-        key_features: ["Jogging trails", "Fitness Center", "Swimming pool", "Kids park"],
-        community : "Tilal Al Ghaf Community",
-        communityDescription:"2wdwd2wd 2ed 2ed ew  dw ed wed we dw ed wed we d wedc wedc edckedfmcmdecmekd,c emdkc ewkdmc wedkmcw demck edkcm",
-        details: [
-            {
-                "Starting Price": "1896000"
-            },
-            {
-                "Payment Plan":"60/40"
-            },
-            {
-                "Hand Over":"Q3 2026"
-            },
-            {
-                "Available Units":"6BR"
-            },
-            {
-                "Developer":"Majid Al Futtaim"
-            }
-        ]
-    };
+    useEffect(() => {
+        const fetchMenuData = async () => {
+          try {
+                const response = await axios.get(`http://localhost:8000/property/${propertyId}`);
+
+                console.log("response>>>>",response.data)
+                setMenuData(response.data)
+          } catch (error) {
+            console.error('Failed to fetch menu data:', error);
+          }
+        };
+        
+        fetchMenuData();
+      }, []);
+    const key_features= ["Jogging trails", "Fitness Center", "Swimming pool", "Kids park"];
 
     const [dropdownVisible, setDropdownVisible] = useState(false);
 
@@ -88,49 +61,50 @@ const ListingPage = () => {
     return (
         <div className="serenity-mansions">
             <nav>
-                <span>Home &gt; {data.category} &gt; <span>{data.name}</span></span>
+                <span>Home &gt; {menuData?.category || "ABC (To be changed)"} &gt; <span>{menuData?.name || "To add"}</span></span>
                 <div className="share-favorite">
                     <button onClick={toggleDropdown}>
                         <FaShareAlt /> Share
                     </button>
                     {dropdownVisible && (
                         <div className="dropdown-menu">
-                            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a>
-                            <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a>
-                            <a href="https://www.whatsapp.com" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+                            <a href="https://www.facebook.com/sharer/sharer.php?u=https://example.com/&t=Your+Custom+Title
+" target="_blank" rel="noopener noreferrer">Facebook</a>
+                            <a href="https://x.com/intent/post?text=TEXT_TO_TWEET&url=google.com" target="_blank" rel="noopener noreferrer">X</a>
+                            <a href="https://api.whatsapp.com/send/?phone=971502754127&text=Hello%2C+I+am+interested+in+learning+more+about+a+project+I+found+on+Home+Sigma.+Project%3A+ABCD&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer">WhatsApp</a>
                         </div>
                     )}
                 </div>
             </nav>
             <div className="body">
                 <div className="text-content">
-                    <h1>{data.name}</h1>
-                    <p>{data.detail}</p>
+                    <h1>{menuData?.name || "To add"}</h1>
+                    <p>{menuData?.detail||"To add"}</p>
                     <div className="cta-buttons">
                         <DynamicButton buttonName="Download Brochure" handleClick={onDownloadClick} theme='light' width="200px" />
                         <DynamicButton buttonName="Register Interest" handleClick={onRegisterClick} width="200px" />
                     </div>
                 </div>
                 <div className="image">
-                    <img src={data.image} alt={data.name} />
+                    <img src={menuData.images} alt={'Add Project image'} />
                 </div>
             </div>
             <div className="main-content">
                 <div className="details">
-                    <div className="price"><h6>Starting price</h6>AED {data.price}</div>
-                    <div className="plan"><h6>Payment Plan</h6>{data.plan}</div>
-                    <div className="handover"><h6>Hand Over</h6>{data.handover}</div>
-                    <div className="units"><h6>Available Units</h6>{data.units}</div>
-                    <div className="developer"><h6>Developer</h6>{data.developer}</div>
+                    <div className="price"><h6>Starting price</h6>AED {menuData?.price || "To add"}</div>
+                    <div className="plan"><h6>Payment Plan</h6>{menuData?.plan || "To add"}</div>
+                    <div className="handover"><h6>Hand Over</h6>{menuData?.handover||"To add"}</div>
+                    <div className="units"><h6>Available Units</h6>{menuData?.units||"To add"}</div>
+                    <div className="developer"><h6>Developer</h6>{menuData?.builder||"To add"}</div>
                 </div>
                 <div className="about-project-container">
                     <div>
                         <h1>About the Project</h1>
                         <hr className="bold-hr" />
-                        <h2>{data.name}</h2>
+                        <h2>{menuData.name || "To add"}</h2>
                     </div>
                     <div className="description">
-                        <p>{data.description}</p>
+                        <p>{menuData.description || "To add"}</p>
                         <div className="cta-buttons">
                             <DynamicButton buttonName="Download Brochure" handleClick={onDownloadClick} theme='light' width="200px" />
                             <DynamicButton buttonName="Register Interest" handleClick={onRegisterClick} width="200px" />
@@ -139,11 +113,11 @@ const ListingPage = () => {
                 </div>
                 <div className='gallery-container'>
                     <h1>Gallery</h1>
-                    <hr className="bold-hr" />
+                    {/* <hr className="bold-hr" /> */}
                     <div className="image-gallery-container">
                         <div className="image-gallery">
                             <Slider {...sliderSettings}>
-                                {data.gallery.map((imgSrc, index) => (
+                                {menuData?.images?.map((imgSrc, index) => (
                                     <div key={index}>
                                         <img src={imgSrc} alt={`Gallery image ${index + 1}`} />
                                     </div>
@@ -153,13 +127,13 @@ const ListingPage = () => {
                     </div>
                 </div>
                 <div className="details">
-                    {data.key_features.map((feature, index) => (
+                    {key_features?.map((feature, index) => (
                         <div key={index} className="price">{feature}</div>
                     ))}
                 </div>
                 <div className="about-community-container">
                     <div className="image">
-                        <img src='https://lh3.googleusercontent.com/p/AF1QipOPmPK5YyRO0SdjnLWuDZtq34n-vGKm12tCX4Fr=s1360-w1360-h1020' />
+                        <img src={menuData.communityImage||"https://lh3.googleusercontent.com/p/AF1QipOPmPK5YyRO0SdjnLWuDZtq34n-vGKm12tCX4Fr=s1360-w1360-h1020"} />
                         <div className="cta-buttons">
                             <DynamicButton buttonName="Download Brochure" handleClick={onDownloadClick} theme='light' width="200px" />
                             <DynamicButton buttonName="Register Interest" handleClick={onRegisterClick} width="200px" />
@@ -168,8 +142,8 @@ const ListingPage = () => {
                     <div className='detail'>
                         <h1>About the Community</h1>
                         <hr className="bold-hr" />
-                        <h2>{data.community}</h2>
-                        <p>{data.communityDescription}</p>
+                        <h2>{menuData?.community|| "add community"}</h2>
+                        <p>{menuData?.communityDescription||"add community Description 2kewdnk2edjnkwendk 2jkendjk2nedkjn2e kej3ndjkn3ekjdn3 kj3endjk3nedkj3ne e3kjndjk3endjk"}</p>
                     </div>
                 </div>
             </div>
