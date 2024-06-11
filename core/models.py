@@ -44,8 +44,8 @@ class Property(models.Model):
     country = models.CharField(max_length=30, blank=True)
     listing_types = models.ManyToManyField(ListingType)
     created_at = models.DateTimeField(auto_now_add=True)
-    created_by = models.CharField(max_length=32)
-    updated_by = models.CharField(max_length=32)
+    created_by = models.CharField(max_length=32, blank=True)
+    updated_by = models.CharField(max_length=32, blank=True)
     updated_at = models.DateTimeField(auto_now=True, editable=False, blank=False, null=False)
 
 
