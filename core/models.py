@@ -36,7 +36,7 @@ class Property(models.Model):
     brochure_link = models.CharField(max_length=255, blank=True)
     community = models.CharField(max_length=50, blank=True)
     community_description = models.CharField(max_length=500, blank=True)
-    community_image_url = models.URLField(max_length=255)
+    community_image_url = models.URLField(max_length=255, blank=True)
     street = models.CharField(max_length=30, blank=True)
     city = models.CharField(max_length=30, blank=True)
     state = models.CharField(max_length=30, blank=True)
