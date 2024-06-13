@@ -21,7 +21,7 @@ const ListingCard = ({ image, labels, location, name, price, redirectTo }) => {
         </div>
         <div className="listing-location">{location}</div>
         <div className="listing-name">{name}</div>
-        <div className="listing-price">From {price}</div>
+        <div className="listing-price">From AED {price}</div>
       </div>
     </div>
   );

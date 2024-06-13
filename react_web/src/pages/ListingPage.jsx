@@ -16,9 +16,9 @@ const ListingPage = () => {
     useEffect(() => {
         const fetchMenuData = async () => {
           try {
-                const response = await axios.get(`http://localhost:8000/property/${propertyId}`);
+                const response = await axios.get(`${process.env.REACT_APP_API_URL}/property/${propertyId}`);
 
-                console.log("response>>>>",response.data)
+                console.log("response>>>>",process.env.REACT_APP_API_URL)
                 setMenuData(response.data)
           } catch (error) {
             console.error('Failed to fetch menu data:', error);
@@ -27,7 +27,6 @@ const ListingPage = () => {
         
         fetchMenuData();
       }, []);
-    const key_features= ["Jogging trails", "Fitness Center", "Swimming pool", "Kids park"];
 
     const [dropdownVisible, setDropdownVisible] = useState(false);
 
@@ -57,6 +56,8 @@ const ListingPage = () => {
         prevArrow: <PrevArrow />,
         arrows: true,
     };
+    const currentUrl = window.location.href;
+
 
     return (
         <div className="serenity-mansions">
@@ -68,10 +69,9 @@ const ListingPage = () => {
                     </button>
                     {dropdownVisible && (
                         <div className="dropdown-menu">
-                            <a href="https://www.facebook.com/sharer/sharer.php?u=https://example.com/&t=Your+Custom+Title
-" target="_blank" rel="noopener noreferrer">Facebook</a>
-                            <a href="https://x.com/intent/post?text=TEXT_TO_TWEET&url=google.com" target="_blank" rel="noopener noreferrer">X</a>
-                            <a href="https://api.whatsapp.com/send/?phone=971502754127&text=Hello%2C+I+am+interested+in+learning+more+about+a+project+I+found+on+Home+Sigma.+Project%3A+ABCD&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+                            <a href={`https://www.facebook.com/sharer/sharer.php?u=${currentUrl}&t=Your+Custom+Title`} target="_blank" rel="noopener noreferrer">Facebook</a>
+                            <a href={`https://x.com/intent/post?text=TEXT_TO_TWEET&url=${currentUrl}`} target="_blank" rel="noopener noreferrer">X</a>
+                            <a href={`https://api.whatsapp.com/send/?phone=971502754127&text=Hello%2C+I+am+interested+in+learning+more+about+a+project+I+found+on+Home+Sigma.+Project%3A+${currentUrl}&type=phone_number&app_absent=0`} target="_blank" rel="noopener noreferrer">WhatsApp</a>
                         </div>
                     )}
                 </div>
@@ -92,9 +92,9 @@ const ListingPage = () => {
             <div className="main-content">
                 <div className="details">
                     <div className="price"><h6>Starting price</h6>AED {menuData?.price || "To add"}</div>
-                    <div className="plan"><h6>Payment Plan</h6>{menuData?.plan || "To add"}</div>
-                    <div className="handover"><h6>Hand Over</h6>{menuData?.handover||"To add"}</div>
-                    <div className="units"><h6>Available Units</h6>{menuData?.units||"To add"}</div>
+                    <div className="plan"><h6>Payment Plan</h6>{menuData?.payment_plan || "To add"}</div>
+                    <div className="handover"><h6>Hand Over</h6>{menuData?.hand_over||"To add"}</div>
+                    <div className="units"><h6>Available Units</h6>{menuData?.available_units||"To add"}</div>
                     <div className="developer"><h6>Developer</h6>{menuData?.builder||"To add"}</div>
                 </div>
                 <div className="about-project-container">
@@ -127,13 +127,13 @@ const ListingPage = () => {
                     </div>
                 </div>
                 <div className="details">
-                    {key_features?.map((feature, index) => (
+                    {menuData.features?.split(", ")?.map((feature, index) => (
                         <div key={index} className="price">{feature}</div>
                     ))}
                 </div>
                 <div className="about-community-container">
                     <div className="image">
-                        <img src={menuData.communityImage||"https://lh3.googleusercontent.com/p/AF1QipOPmPK5YyRO0SdjnLWuDZtq34n-vGKm12tCX4Fr=s1360-w1360-h1020"} />
+                        <img src={menuData.community_image_url||"https://lh3.googleusercontent.com/p/AF1QipOPmPK5YyRO0SdjnLWuDZtq34n-vGKm12tCX4Fr=s1360-w1360-h1020"} />
                         <div className="cta-buttons">
                             <DynamicButton buttonName="Download Brochure" handleClick={onDownloadClick} theme='light' width="200px" />
                             <DynamicButton buttonName="Register Interest" handleClick={onRegisterClick} width="200px" />
@@ -143,7 +143,7 @@ const ListingPage = () => {
                         <h1>About the Community</h1>
                         <hr className="bold-hr" />
                         <h2>{menuData?.community|| "add community"}</h2>
-                        <p>{menuData?.communityDescription||"add community Description 2kewdnk2edjnkwendk 2jkendjk2nedkjn2e kej3ndjkn3ekjdn3 kj3endjk3nedkj3ne e3kjndjk3endjk"}</p>
+                        <p>{menuData?.community_description||"add community Description 2kewdnk2edjnkwendk 2jkendjk2nedkjn2e kej3ndjkn3ekjdn3 kj3endjk3nedkj3ne e3kjndjk3endjk"}</p>
                     </div>
                 </div>
             </div>

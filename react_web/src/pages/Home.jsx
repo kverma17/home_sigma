@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Body from '../components/Body';
 import Listings from '../components/Listing';
 import FloatingButtons from '../components/FloatingButtion';
+import axios from 'axios';
 
 const Home = ({ listingType }) => {
     const filterOptions = {
@@ -11,11 +12,11 @@ const Home = ({ listingType }) => {
         maxPrice: [300000, 400000, 500000, 600000],
         minPrice: [300000, 400000, 500000, 600000]
     };
-
+    
     return (
         <div className="Home" style={{backgroundColor:'#efefef'}}>
             <Body filterOptions={filterOptions} />
-            <Listings listingType={listingType} />
+            <Listings listingType={listingType}/>
             <FloatingButtons />
         </div>
     );

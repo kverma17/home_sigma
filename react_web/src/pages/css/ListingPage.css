@@ -158,7 +158,6 @@
   
   .about-project-container > div {
     flex: 1;
-    margin-right: 20px;
   }
   .image-gallery hr{
     border-top: 3px solid black;
@@ -275,6 +274,34 @@
       flex-direction: column-reverse;
       padding: 30px;
     }
+
+    .about-project-container{
+      flex-direction: column;
+    }
+    .about-project-container h1{
+      font-size: 28px;
+    }
+    .about-community-container{
+      flex-direction: column;
+    }
+    .about-community-container > div > hr {
+      width: 310px;
+    }
+    .about-project-container > div > hr {
+      width: 310px;
+    }
+    .about-community-container h1{
+      font-size: 28px;
+    }
+
+    .description p {
+      width: 90%;;
+      margin: 15px;
+  }
+  .detail p{
+    width: none;
+    margin: 15px;
+  }
   
     .text-content {
       margin-right: 0;
@@ -302,6 +329,7 @@
     .image img {
       max-width: 90vw;
       height: auto;
+      margin: 10px;
     }
   }
   

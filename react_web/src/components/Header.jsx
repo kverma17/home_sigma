@@ -14,7 +14,7 @@ export default function Header() {
   useEffect(() => {
     const fetchMenuData = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/header/');
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/header/`);
         console.log("response>>>>",response.data)
         setMenuData(response.data);
       } catch (error) {
