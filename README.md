@@ -11,4 +11,8 @@ python manage.py createsuperuser
 python manage.py runserver
 
 npm i
+<!-- for prod env -->
+npm run build:prod 
+serve -s build
+ <!-- for dev env -->
 npm start
