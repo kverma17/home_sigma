@@ -25,6 +25,7 @@ class Property(models.Model):
     detail = models.CharField(max_length=100, blank=True)
     description = models.CharField(max_length=500, blank=True)
     category = models.CharField(max_length=50, blank=True)
+    label = models.CharField(max_length=255, blank=True)
     builder = models.CharField(max_length=30, blank=True)
     location = models.CharField(max_length=30, blank=True)
     price = models.IntegerField(null=True, blank=True)
