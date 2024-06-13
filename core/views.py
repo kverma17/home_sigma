@@ -14,7 +14,11 @@ class HeaderView(APIView):
 
 	def get(self, request):
 		details = [HeaderSerializer(header).data for header in Header.objects.all()]
-		resp = {}
+		resp = {
+			"Address": "I-SH/R 10, P1 / BLOCK I, Saih Shuaib 2, Dubai Industrial City, Dubai, U.A.E",
+			"Phone": ["+971 50 275 4127", "+971 56 889 9896"]
+			"Email": ""
+		}
 		for detail in details:
 			name = detail['name']
 			values = detail['values']
