@@ -16,7 +16,7 @@ const ListingPage = () => {
     useEffect(() => {
         const fetchMenuData = async () => {
           try {
-                const response = await axios.get(`${process.env.REACT_APP_API_URL}/property/${propertyId}`);
+                const response = await axios.get(`${process.env.REACT_APP_API_URL}/property/${propertyId}/`);
 
                 console.log("response>>>>",process.env.REACT_APP_API_URL)
                 setMenuData(response.data)
