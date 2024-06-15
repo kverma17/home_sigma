@@ -55,6 +55,8 @@ class Leads(models.Model):
     name = models.CharField(max_length=30)
     mobile = models.CharField(max_length=12, blank=True)
     email = models.EmailField(blank=True)
+    landing_link = models.CharField(max_length=100, blank=True)
+    generated_by = models.CharField(max_length=30, blank=True)
     interests = models.CharField(max_length=100, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
