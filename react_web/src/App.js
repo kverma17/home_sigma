@@ -30,8 +30,8 @@ const App = () => {
 
     return (
         <>
-            <Header />
             <BrowserRouter>
+                <Header />
                 <ScrollToTop />
                 <div className="App">
                     <Routes>
@@ -43,8 +43,8 @@ const App = () => {
                         <Route path="/about-home-sigma" element={<About />} />
                     </Routes>
                 </div>
+                <Footer />
             </BrowserRouter>
-            <Footer />
         </>
     );
 }

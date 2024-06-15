@@ -5,27 +5,27 @@ import './css/Listings.css'; // Create CSS for your component if needed
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-const Listings = ({ listingType }) => {
+const Listings = ({ listingType, menuData, setMenuData }) => {
     const [isHovered, setIsHovered] = useState(false);
-    const [menuData, setMenuData] = useState([]);
+    // const [menuData, setMenuData] = useState([]);
 
     const handleClick = () => {
         // Implement the functionality for loading more listings
     };
 
-    useEffect(() => {
-        const fetchMenuData = async () => {
-            try {
-                const response = await axios.get(`${process.env.REACT_APP_API_URL}/property`);
-                console.log("response>>>>", response.data);
-                setMenuData(response.data);
-            } catch (error) {
-                console.error('Failed to fetch menu data:', error);
-            }
-        };
+    // useEffect(() => {
+    //     const fetchMenuData = async () => {
+    //         try {
+    //             const response = await axios.get(`${process.env.REACT_APP_API_URL}/property?min_price=1&max_price=1111111&location=`);
+    //             console.log("response>>>>", response.data);
+    //             setMenuData(response.data);
+    //         } catch (error) {
+    //             console.error('Failed to fetch menu data:', error);
+    //         }
+    //     };
 
-        fetchMenuData();
-    }, []);
+    //     fetchMenuData();
+    // }, []);
 
     console.log("listing>>>>>", menuData);
 
@@ -39,7 +39,7 @@ const Listings = ({ listingType }) => {
                             <Link to={`/property/${listing.id}`} key={listing.name} className="listing-link">
                                 <ListingCard
                                     image={listing.community_image_url}
-                                    labels={listing.features.split(", ")}
+                                    labels={listing?.label?.split(", ")}
                                     location={listing.location}
                                     name={listing.name}
                                     price={listing.price}

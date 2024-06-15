@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import logo from '../assets/logo.png';
 import DynamicDropdown from './DynamicDropdown';
@@ -10,12 +11,13 @@ export default function Header() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [menuData, setMenuData] = useState({});
   const interestOptions = ['Condo / Apartment', 'Villas', 'Town House'];
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchMenuData = async () => {
       try {
         const response = await axios.get(`${process.env.REACT_APP_API_URL}/header/`);
-        console.log("response>>>>",response.data)
+        console.log("response>>>>", response.data);
         setMenuData(response.data);
       } catch (error) {
         console.error('Failed to fetch menu data:', error);
@@ -32,10 +34,15 @@ export default function Header() {
   const handleClosePopup = () => {
     setIsPopupOpen(false);
   };
+
+  const handleLogoClick = () => {
+    navigate('/');
+  };
+
   return (
     <header className="header-container">
       <div className="header-content">
-        <div className="logo-container">
+        <div className="logo-container" onClick={handleLogoClick}>
           <img src={logo} alt="HomeSigma Real Estate LLC Logo" className="logo-img" height={70} />
         </div>
         <div className="dropdowns-container">

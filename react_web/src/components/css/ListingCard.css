@@ -5,6 +5,7 @@
     cursor: pointer;
     transition: box-shadow 0.3s ease-in-out;
     background-color: #c5c5c5;
+    width: 410px;
   }
   
   .listing-card:hover {
@@ -42,5 +43,11 @@
   .listing-name,
   .listing-price {
     margin: 8px 0;
+  }
+
+  @media (max-width: 768px) {
+    .listing-card {
+      width: 100%;
+    }
   }
   

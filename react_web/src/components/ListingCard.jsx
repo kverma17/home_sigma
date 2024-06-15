@@ -14,11 +14,13 @@ const ListingCard = ({ image, labels, location, name, price, redirectTo }) => {
     <div className="listing-card" onClick={handleClick}>
       <img src={image} alt={name} />
       <div className="listing-details">
+      {labels && labels[0].length > 0 && (
         <div className="listing-labels">
           {labels.map(label => (
             <span key={label} className="listing-label">{label}</span>
           ))}
         </div>
+      )}
         <div className="listing-location">{location}</div>
         <div className="listing-name">{name}</div>
         <div className="listing-price">From AED {price}</div>
