@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { FaBars, FaTimes } from 'react-icons/fa';
 import logo from '../assets/logo.png';
 import DynamicDropdown from './DynamicDropdown';
 import DynamicButton from './Button';
@@ -10,6 +11,7 @@ import './css/Header.css';
 export default function Header() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [menuData, setMenuData] = useState({});
+  const [showDropdowns, setShowDropdowns] = useState(false);
   const interestOptions = ['Condo / Apartment', 'Villas', 'Town House'];
   const navigate = useNavigate();
 
@@ -39,13 +41,20 @@ export default function Header() {
     navigate('/');
   };
 
+  const handleToggleDropdowns = () => {
+    setShowDropdowns(!showDropdowns);
+  };
+
   return (
     <header className="header-container">
       <div className="header-content">
         <div className="logo-container" onClick={handleLogoClick}>
           <img src={logo} alt="HomeSigma Real Estate LLC Logo" className="logo-img" height={70} />
         </div>
-        <div className="dropdowns-container">
+        <button className="toggle-dropdowns-button" onClick={handleToggleDropdowns}>
+          {showDropdowns ? <FaTimes /> : <FaBars />}
+        </button>
+        <div className={`dropdowns-container ${showDropdowns ? 'visible' : ''}`}>
           {Object.keys(menuData).map((menu) => {
             const options = menuData[menu].reduce((acc, item) => {
               const key = Object.keys(item)[0];

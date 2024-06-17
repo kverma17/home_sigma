@@ -1,58 +1,91 @@
 .header-container {
-    padding: 10px;
-    background: #282c34;
-    background-color: rgb(0, 0, 0);
-    text-align: center; /* Center align text for child elements */
-    box-shadow: 20px 10px 16px 20px rgba(0, 0, 0, 0.1);
-  }
-  
+  padding: 10px;
+  background: #282c34;
+  background-color: rgb(0, 0, 0);
+  text-align: center; /* Center align text for child elements */
+  box-shadow: 20px 10px 16px 20px rgba(0, 0, 0, 0.1);
+}
+
+.header-content {
+  display: flex;
+  flex-direction: row; /* Default to column layout for centering */
+  align-items: center;
+  justify-content: center;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center; /* Center logo horizontally */
+  align-items: center;
+  margin-bottom: 20px; /* Add margin for spacing */
+}
+
+.logo-img {
+  height: 100px;
+  scale: 1.8;
+}
+
+.dropdowns-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Center dropdowns horizontally */
+  transition: max-height 0.3s ease-out;
+}
+
+.dropdowns-container.hidden {
+  max-height: 0;
+  overflow: hidden;
+}
+
+.dropdowns-container.visible {
+  max-height: 1000px; /* Arbitrary large value to show content */
+}
+
+.dropdown-container {
+  margin: 5px; /* Adjusted margin for better spacing */
+}
+
+.button-container {
+  display: flex;
+  justify-content: center; /* Center button horizontally */
+  align-items: center;
+}
+
+.toggle-dropdowns-button {
+  display: none;
+  margin: 10px;
+  padding: 10px;
+  background-color: black;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  color: rgb(216, 165, 80);
+}
+
+/* Ensure flex direction remains column for smaller screens */
+@media screen and (max-width: 768px) {
   .header-content {
-    display: flex;
-    flex-direction: row; /* Default to column layout for centering */
-    align-items: center;
-    justify-content: center;
-    max-width: 1400px;
-    margin: 0 auto;
+    flex-direction: column;
   }
-  
-  .logo-container {
-    display: flex;
-    justify-content: center; /* Center logo horizontally */
-    align-items: center;
-    margin-bottom: 20px; /* Add margin for spacing */
-  }
-  
+
   .logo-img {
-    /* margin-right: 20px; */
-    height: 100px;
-    scale: 1.8;
+    margin-right: 0; /* Remove right margin on small screens */
+    margin-bottom: 10px; /* Add bottom margin for spacing */
   }
-  
+
+  .toggle-dropdowns-button {
+    display: block;
+  }
+
   .dropdowns-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center; /* Center dropdowns horizontally */
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
   }
-  
-  .dropdown-container {
-    margin: 5px; /* Adjusted margin for better spacing */
+
+  .dropdowns-container.visible {
+    max-height: 1000px; /* Arbitrary large value to show content */
   }
-  
-  .button-container {
-    display: flex;
-    justify-content: center; /* Center button horizontally */
-    align-items: center;
-  }
-  
-  /* Ensure flex direction remains column for smaller screens */
-  @media screen and (max-width: 768px) {
-    .header-content {
-      flex-direction: column;
-    }
-  
-    .logo-img {
-      margin-right: 0; /* Remove right margin on small screens */
-      margin-bottom: 10px; /* Add bottom margin for spacing */
-    }
-  }
-  
+}
