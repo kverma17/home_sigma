@@ -35,7 +35,7 @@ const Footer = () => {
         <div className="quick-links">
           <h3>Quick Links</h3>
           <ul>
-            <li><a href="#about">About Springfield</a></li>
+            <li><a href="#about">About Home Sigma</a></li>
             <li><a href="#contact">Contact Us</a></li>
             <li><a href="#team">Our Team</a></li>
             <li><a href="#careers">Careers</a></li>

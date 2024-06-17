@@ -49,4 +49,10 @@
   .floating-button:active {
     transform: scale(0.9);
   }
+
+  @media screen and (max-width: 768px) {
+    .floating-buttons {
+      transform: scale(0.7);
+    }
+  }
   
