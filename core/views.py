@@ -2,8 +2,9 @@ import json
 from django.db.models import Q
 from rest_framework import generics
 from rest_framework.views import APIView 
-from . models import *
+from rest_framework.decorators import api_view
 from rest_framework.response import Response 
+from . models import *
 from . serializer import *
 from .db_service import DbService
 # Create your views here. 
@@ -33,12 +34,16 @@ class PropertyView(APIView):
 	def get(self, request):
 		query_params = request.GET
 		details = []
+		search_param = query_params.get('q')
 		listing_type = query_params.get('type')
 		min_price = query_params.get('min_price')
 		max_price = query_params.get('max_price')
 		builder = query_params.get('builder')
 		location = query_params.get('location')
 		filters = Q()
+		if search_param:
+			filters &= Q(name__icontains=search_param) | Q(builder__icontains=search_param) | \
+				Q(description__icontains=search_param) | Q(location__icontains=search_param)
 		if listing_type:
 			# Convert comma-separated string to list
 			listing_type_names = listing_type.split(',')
@@ -111,3 +116,17 @@ class LeadHistoryView(APIView):
 	def get(self, request, pk):
 		lead_history = [LeadHistorySerializer(lead).data for lead in LeadHistory.objects.filter(lead_id=pk)]
 		return Response(lead_history)
+
+# Autocomplete API
+@api_view(['GET'])
+def autocomplete(request):
+    term = request.query_params.get('term', '')
+    properties = Property.objects.filter(
+        Q(name__icontains=term) | Q(builder__icontains=term)
+    ).values('name', 'builder').distinct()
+    results = []
+    for prop in properties:
+        results.append(prop['name'])
+        results.append(prop['builder'])
+    results = list(set(results))  # Remove duplicates
+    return Response(results)

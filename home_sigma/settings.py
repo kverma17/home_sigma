@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-7gd+(%b4de84m)c8*ne$206@m^6552eqngx$3*)n4$!71(^gue
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', '18.234.60.25', 'www.homesigma.ae', 'homesigma.ae']
 
 
 # Application definition
@@ -57,7 +57,9 @@ MIDDLEWARE = [
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
-    ]
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
 }
 
 CORS_ORIGIN_ALLOW_ALL = True
