@@ -19,12 +19,12 @@
   display: flex;
   justify-content: center; /* Center logo horizontally */
   align-items: center;
-  margin-bottom: 20px; /* Add margin for spacing */
+  padding: 10px;
 }
 
 .logo-img {
-  height: 100px;
-  scale: 1.8;
+  height: 80px;
+  scale: 1.4;
 }
 
 .dropdowns-container {
@@ -72,7 +72,6 @@
 
   .logo-img {
     margin-right: 0; /* Remove right margin on small screens */
-    margin-bottom: 10px; /* Add bottom margin for spacing */
   }
 
   .toggle-dropdowns-button {

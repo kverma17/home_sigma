@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-7gd+(%b4de84m)c8*ne$206@m^6552eqngx$3*)n4$!71(^gue
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '18.234.60.25', 'www.homesigma.ae', 'homesigma.ae']
+ALLOWED_HOSTS = ['127.0.0.1', '18.234.60.25', 'www.homesigma.ae', 'homesigma.ae','localhost']
 
 
 # Application definition

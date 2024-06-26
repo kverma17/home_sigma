@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaWhatsapp, FaPhone, FaFacebook, FaInstagramSquare,FaInstagram } from 'react-icons/fa';
+import { FaWhatsapp, FaPhone, FaFacebook, FaInstagram } from 'react-icons/fa';
 import './css/FloatingButtons.css';
 
 const FloatingButtons = () => {
