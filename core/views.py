@@ -128,7 +128,8 @@ def autocomplete(request):
     for prop in properties:
         property = {
             'name': prop['name'],
-            'url': prop['url']
+            'url': prop['url'],
+            'id': prop['id'],
         }
         if prop['id'] not in prop_seen:
             results.append(property)
