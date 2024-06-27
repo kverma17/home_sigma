@@ -40,6 +40,7 @@ class PropertyView(APIView):
         max_price = query_params.get('max_price')
         builder = query_params.get('builder')
         location = query_params.get('location')
+        bedrooms = query_params.get('bedrooms')
         filters = Q()
         if search_param:
             filters &= Q(name__icontains=search_param) | Q(builder__icontains=search_param) | \
@@ -63,6 +64,10 @@ class PropertyView(APIView):
 
         if location:
             filters &= Q(location__icontains=location)
+        
+        if bedrooms is not None:
+            filters &= Q(bedrooms__gte=bedrooms)
+
         property_objs = Property.objects.filter(filters).distinct()
         for property_obj in property_objs:
             details.append(PropertySerializer(property_obj).data)
@@ -88,8 +93,10 @@ class PropertyDetailView(APIView):
             for l_type in listing_types:
                 type_name = ListingType.objects.filter(id=l_type).values_list('name', flat=True).first()
                 property_data['listing_types'].append(type_name)
-            images = PropertyImage.objects.filter(property_id=property_obj.id).values_list('image_url', flat=True).all()
-            property_data['images'] = images
+            
+            images = PropertyImage.objects.filter(property_id=property_obj.id)
+            property_data['images'] = [image.image_url.url for image in images]
+
         return Response(property_data)
 
 
@@ -121,10 +128,12 @@ class LeadHistoryView(APIView):
 @api_view(['GET'])
 def autocomplete(request):
     term = request.query_params.get('term', '')
-    properties = Property.objects.filter(
-        Q(name__icontains=term) | Q(builder__icontains=term)
-    ).values('id', 'name', 'builder', 'url').distinct()
-    results, prop_seen = [], {}
+    results, properties, prop_seen = [], [], {}
+    if term:
+        properties = Property.objects.filter(
+            Q(name__icontains=term) | Q(builder__icontains=term)
+        ).values('id', 'name', 'builder', 'url').distinct()
+
     for prop in properties:
         property = {
             'name': prop['name'],
