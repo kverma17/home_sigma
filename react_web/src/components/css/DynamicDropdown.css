@@ -22,12 +22,13 @@
   }
   
   .bg-white {
-    background-color: rgb(0, 0, 0);
+    border: 2px solid linear-gradient(270deg, #efdc97, #a96f44);
+    border-radius: 30px;
   }
   
   .z\-10{
     position: fixed;
-  /* background: rgb(216, 165, 80); */
+  /* background: linear-gradient(270deg, #efdc97, #a96f44); */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -54,9 +55,9 @@
   }
   
   .text-gray-700 {
-    color: rgb(216, 165, 80);
+    /* color: linear-gradient(270deg, #efdc97, #a96f44); */
     text-decoration: none;
-    background-color: black;
+
   }
   
   /* .shadow-sm {
@@ -88,7 +89,7 @@
   }
   
   .text-gray-400 {
-    color: #9ca3af;
+    color: black;
   }
   
   .mt-2 {
@@ -135,6 +136,10 @@
   
   .block {
     display: block;
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
+    
   }
   
   .px-4 {
@@ -151,18 +156,43 @@
     font-size: 0.875rem;
   }
 
-  .gap-10 {
+  /* .gap-10 {
     margin: 0 30px;
     border: none;
     box-shadow: none;
+  } */
+  .gap-10 {
+    margin: 3px 10px;
+    border-radius: 30px;
+    border: 1px solid #fff;
+    width: max-content;
+    background-color: white;
+    box-shadow: inherit;
+  }
+  .gap-20 {
+    margin: 3px 10px;
+    border-radius: 30px;
+    border: 1px solid #fff;
+    width: max-content;
+    background-color: white;
+    text-decoration: none;
+    box-shadow: inherit;
   }
   
+  .gap-10:hover {
+    background: linear-gradient(270deg, #efdc97, #a96f44);
+    color: white;
+  }
+
   .bg-gray-100 {
-    background-color: #f3f4f6;
+    background:linear-gradient(270deg, #efdc97, #a96f44);
+    border-radius: 50px;
+    font-weight: 500;
+
   }
   
   .text-gray-900 {
-    color: #1f2937;
+    color: white;
     text-decoration: none;
   }
   

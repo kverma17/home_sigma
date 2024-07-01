@@ -4,7 +4,7 @@
     overflow: hidden;
     cursor: pointer;
     transition: box-shadow 0.3s ease-in-out;
-    background-color: #c5c5c5;
+    /* background-color: #c5c5c5; */
     width: 410px;
   }
   

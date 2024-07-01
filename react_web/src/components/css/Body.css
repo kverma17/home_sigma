@@ -7,6 +7,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  /* margin-top: 100pxs; */
 }
 
 .logo-image {
@@ -33,14 +34,14 @@
   border: 2px solid #000000;
   background-color: white;
   color: #000000;
-  border-radius: 5px;
+  border-radius: 50px;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .buttons button.active {
-  background-color: #000000;
-  color: rgb(216, 165, 80);
+  background: linear-gradient(270deg, #efdc97, #a96f44);
+  color: white;
 }
 
 .search-bar-container {
@@ -56,7 +57,27 @@
   padding-right: 60px; /* Add padding to the right for the icons */
   font-size: 16px;
   border: 2px solid #000000;
-  border-radius: 5px;
+  border-radius: 50px;
+}
+/* Body.css */
+.autocomplete-dropdown {
+  position: absolute;
+  top: 45px;
+  background-color: white;
+  border: 1px solid #ccc;
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.autocomplete-item {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.autocomplete-item:hover {
+  background-color: #f0f0f0;
 }
 
 .search-icon {
@@ -122,11 +143,14 @@
 .reset-button {
   background-color: #f0f0f0;
   color: #000000;
+  border-radius: 50px;
 }
 
 .search-button {
-  background-color: #000000;
-  color: rgb(216, 165, 80);
+  color: white;
+  border-radius: 50px;
+  background: linear-gradient(270deg, #efdc97, #a96f44);
+  border: 2px solid black;
 }
 
 @media screen and (max-width: 650px) {

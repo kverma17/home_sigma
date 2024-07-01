@@ -5,7 +5,7 @@ import './css/Listings.css'; // Create CSS for your component if needed
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-const Listings = ({ listingType, menuData, setMenuData }) => {
+const Listings = ({ listingType, menuData }) => {
     const [isHovered, setIsHovered] = useState(false);
     // const [menuData, setMenuData] = useState([]);
 
