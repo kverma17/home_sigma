@@ -32,6 +32,7 @@ class Property(models.Model):
     payment_plan = models.CharField(max_length=30, blank=True)
     hand_over = models.CharField(max_length=10, blank=True)
     available_units = models.CharField(max_length=10, blank=True)
+    bedrooms = models.CharField(max_length=10, blank=True)
     attractions = models.CharField(max_length=255, blank=True)
     features = models.CharField(max_length=255, blank=True)
     brochure_link = models.CharField(max_length=255, blank=True)
@@ -71,8 +72,5 @@ class LeadHistory(models.Model):
 class PropertyImage(models.Model):
     id = models.AutoField(primary_key=True)
     property_id = models.IntegerField()
-    image_url = models.URLField(max_length=255)
+    image_url = models.ImageField(upload_to='property_images/')
     created_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.image_url
