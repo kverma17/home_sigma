@@ -35,6 +35,7 @@ class PropertyView(APIView):
         query_params = request.GET
         details = []
         search_param = query_params.get('q')
+        category = query_params.get('category')
         listing_type = query_params.get('type')
         min_price = query_params.get('min_price')
         max_price = query_params.get('max_price')
@@ -45,6 +46,8 @@ class PropertyView(APIView):
         if search_param:
             filters &= Q(name__icontains=search_param) | Q(builder__icontains=search_param) | \
                 Q(description__icontains=search_param) | Q(location__icontains=search_param)
+        if category:
+            filters &= Q(category=category)
         if listing_type:
             # Convert comma-separated string to list
             listing_type_names = listing_type.split(',')
@@ -131,7 +134,7 @@ def autocomplete(request):
     results, properties, prop_seen = [], [], {}
     if term:
         properties = Property.objects.filter(
-            Q(name__icontains=term) | Q(builder__icontains=term)
+            Q(name__icontains=term) | Q(builder__icontains=term) | Q(city__icontains=term)
         ).values('id', 'name', 'builder', 'url').distinct()
 
     for prop in properties:

@@ -3,9 +3,13 @@ from .models import Property, ListingType, Header, Leads, LeadHistory, PropertyI
 # Register your models here.
 
 admin.site.register(ListingType)
-admin.site.register(Header)
 admin.site.register(Leads)
 admin.site.register(LeadHistory)
+
+@admin.register(Header)
+class HeaderAdmin(admin.ModelAdmin):
+    list_display = ('name', 'values', 'url')
+    search_fields = ('name',)
 
 @admin.register(Property)
 class PropertyAdmin(admin.ModelAdmin):
@@ -15,6 +19,6 @@ class PropertyAdmin(admin.ModelAdmin):
 
 @admin.register(PropertyImage)
 class PropertyImageAdmin(admin.ModelAdmin):
-    list_display = ('id', 'property_id', 'image_url', 'created_at')
+    list_display = ('property_id', 'image_url', 'created_at')
     search_fields = ('property_id',)
     list_filter = ('created_at',)
