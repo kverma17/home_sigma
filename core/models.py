@@ -24,6 +24,7 @@ class ListingType(models.Model):
 class Property(models.Model): 
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50)
+    url = models.CharField(max_length=50)
     detail = models.CharField(max_length=100, blank=True)
     description = models.CharField(max_length=500, blank=True)
     category = models.CharField(max_length=50, blank=True)
