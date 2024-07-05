@@ -146,7 +146,7 @@ const PopupForm = ({ onClose, interestOptions }) => {
               {errors.interests && <span className="error">{errors.interests}</span>}
             </div>
             <center>
-              <DynamicButton buttonName="Get In Touch" handleClick={handleSubmit} />
+              <DynamicButton buttonName="Submit" handleClick={handleSubmit} />
             </center>
           </form>
         </div>

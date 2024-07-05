@@ -1,13 +1,13 @@
 // src/pages/About.jsx
 import React from 'react';
 
-const About = () => {
+const Team = () => {
     return (
         <div className="About" style={{marginTop:"120px"}}>
-            <h1>About Us</h1>
-            <p>This is the About page.</p>
+            <h1>Our Team</h1>
+            <p>This is the Team page.</p>
         </div>
     );
 };
 
-export default About;
+export default Team;

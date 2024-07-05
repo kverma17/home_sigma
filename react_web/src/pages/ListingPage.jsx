@@ -7,6 +7,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import DynamicButton from '../components/Button';
 import { FaShareAlt } from 'react-icons/fa';
 import { NextArrow, PrevArrow } from '../components/CustomArrows';
+import { FaWhatsapp, FaTwitter, FaFacebook, FaInstagram } from 'react-icons/fa';
 import axios from 'axios';
 
 const ListingPage = () => {
@@ -69,9 +70,9 @@ const ListingPage = () => {
                     </button>
                     {dropdownVisible && (
                         <div className="dropdown-menu">
-                            <a href={`https://www.facebook.com/sharer/sharer.php?u=${currentUrl}&t=Your+Custom+Title`} target="_blank" rel="noopener noreferrer">Facebook</a>
-                            <a href={`https://x.com/intent/post?text=TEXT_TO_TWEET&url=${currentUrl}`} target="_blank" rel="noopener noreferrer">X</a>
-                            <a href={`https://api.whatsapp.com/send/?phone=971502754127&text=Hello%2C+I+am+interested+in+learning+more+about+a+project+I+found+on+Home+Sigma.+Project%3A+${currentUrl}&type=phone_number&app_absent=0`} target="_blank" rel="noopener noreferrer">WhatsApp</a>
+                            <a href={`https://www.facebook.com/sharer/sharer.php?u=${currentUrl}&t=Your+Custom+Title`} target="_blank" rel="noopener noreferrer"><FaFacebook/>Facebook</a>
+                            <a href={`https://x.com/intent/post?text=TEXT_TO_TWEET&url=${currentUrl}`} target="_blank" rel="noopener noreferrer"><FaTwitter />X</a>
+                            <a href={`https://api.whatsapp.com/send/?text=Hello%2C+I+am+interested+in+learning+more+about+a+project+I+found+on+Home+Sigma.+Project%3A+${currentUrl}&type=phone_number&app_absent=0`} target="_blank" rel="noopener noreferrer"><FaWhatsapp/>WhatsApp</a>
                         </div>
                     )}
                 </div>
@@ -86,7 +87,7 @@ const ListingPage = () => {
                     </div>
                 </div>
                 <div className="image">
-                    <img src={menuData.images} alt={'Add Project image'} />
+                    <img src={menuData?.thumbnail} alt={'Add Project image'} />
                 </div>
             </div>
             <div className="main-content">

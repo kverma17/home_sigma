@@ -5,7 +5,8 @@
     cursor: pointer;
     transition: box-shadow 0.3s ease-in-out;
     /* background-color: #c5c5c5; */
-    width: 410px;
+    width: inherit;
+    max-width: 500px;
   }
   
   .listing-card:hover {
@@ -32,11 +33,13 @@
   }
   
   .listing-label {
-    background-color: #000000;
-    color: rgb(216, 165, 80);
-    border-radius: 8px;
+    color: black;
+    border-radius: 50px;
     padding: 4px 8px;
     font-size: 12px;
+    font-weight: 700;
+    background: linear-gradient(270deg, #efdc97, #a96f44);
+    border: 1px solid;
   }
   
   .listing-location,

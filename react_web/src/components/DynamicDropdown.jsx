@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import { Menu, Transition } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import './css/DynamicDropdown.css';
+import { Link } from 'react-router-dom';
 
 function DynamicDropdown({ dropdownName, options }) {
   return (
@@ -24,20 +25,35 @@ function DynamicDropdown({ dropdownName, options }) {
       >
         <Menu.Items className="absolute right-0 gap-20 z-10 w-40 origin-top-right bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="py-1">
-            {Object.keys(options).map((option) => (
-              <Menu.Item key={option}>
-                {({ active }) => (
-                  <a
-                    href={options[option]}
-                    className={`block px-4 py-2 text-sm ${
-                      active ? 'bg-gray-100 text-gray-900' : 'text-gray-700'
-                    }`}
-                  >
-                    {option}
-                  </a>
-                )}
-              </Menu.Item>
-            ))}
+            {Object.keys(options).map((option) => {
+              let linkTo;
+              if (option === "About Home Sigma") {
+                linkTo = "/about-home-sigma";
+              } else if (option === "Our Team") {
+                linkTo = "/our-team";
+              }
+              else if (option === "FAQ") {
+                linkTo = "/faq";
+              } else {
+                linkTo = `/category/${option}`;
+              }
+              
+              return (
+                <Link to={linkTo} className="listing-link" key={option}>
+                  <Menu.Item>
+                    {({ active }) => (
+                      <a
+                        className={`block px-4 py-2 text-sm ${
+                          active ? 'bg-gray-100 text-gray-900' : 'text-gray-700'
+                        }`}
+                      >
+                        {option}
+                      </a>
+                    )}
+                  </Menu.Item>
+                </Link>
+              );
+            })}
           </div>
         </Menu.Items>
       </Transition>

@@ -38,7 +38,7 @@ const Listings = ({ listingType, menuData }) => {
                         {Array.isArray(menuData) && menuData.map(listing => (
                             <Link to={`/property/${listing.id}`} key={listing.name} className="listing-link">
                                 <ListingCard
-                                    image={listing.community_image_url}
+                                    image={listing?.thumbnail}
                                     labels={listing?.label?.split(", ")}
                                     location={listing.location}
                                     name={listing.name}

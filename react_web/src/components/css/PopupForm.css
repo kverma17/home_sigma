@@ -8,7 +8,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000; /* High z-index to ensure it is on top */
+  z-index: 10000; /* High z-index to ensure it is on top */
 }
 
 .popup-form {
