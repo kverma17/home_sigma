@@ -42,6 +42,8 @@ class PropertyView(APIView):
         builder = query_params.get('builder')
         location = query_params.get('location')
         bedrooms = query_params.get('bedrooms')
+        limit = int(query_params.get('limit', '6'))
+
         filters = Q()
         if search_param:
             filters &= Q(name__icontains=search_param) | Q(builder__icontains=search_param) | \
@@ -72,9 +74,14 @@ class PropertyView(APIView):
             filters &= Q(bedrooms__gte=bedrooms)
 
         property_objs = Property.objects.filter(filters).distinct()
-        for property_obj in property_objs:
-            details.append(PropertySerializer(property_obj).data)
-        return Response(details) 
+
+        # Slice the queryset to get only the records for the current page
+        paginated_property_objs = property_objs[:limit]
+
+        # Serialize the data
+        serialized_data = PropertySerializer(paginated_property_objs, many=True).data
+
+        return Response(serialized_data)
 
     def post(self, request): 
         serializer = PropertySerializer(data=request.data) 
