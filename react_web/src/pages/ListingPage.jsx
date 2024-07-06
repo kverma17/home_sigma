@@ -9,9 +9,11 @@ import { FaShareAlt } from 'react-icons/fa';
 import { NextArrow, PrevArrow } from '../components/CustomArrows';
 import { FaWhatsapp, FaTwitter, FaFacebook, FaInstagram } from 'react-icons/fa';
 import axios from 'axios';
+import PopupForm from '../components/PopupForm';
 
 const ListingPage = () => {
     const { propertyId } = useParams();
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
     const [menuData, setMenuData] = useState({});
     console.log("propertyId>>>", propertyId)
     useEffect(() => {
@@ -36,14 +38,24 @@ const ListingPage = () => {
     };
 
     const onDownloadClick = () => {
-        // Implement download logic here
-        console.log('Downloading brochure...');
+    const url = menuData?.brochure_link;
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'sobha-waves-grande-brochure.pdf';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    console.log('Downloading brochure...');
     };
 
     const onRegisterClick = () => {
         // Implement register logic here
+    setIsPopupOpen(true);
         console.log('Registering interest...');
     };
+    const handleClosePopup = () => {
+        setIsPopupOpen(false);
+      };
 
     const sliderSettings = {
         dots: true,
@@ -84,6 +96,7 @@ const ListingPage = () => {
                     <div className="cta-buttons">
                         <DynamicButton buttonName="Download Brochure" handleClick={onDownloadClick} theme='light' width="200px" />
                         <DynamicButton buttonName="Register Interest" handleClick={onRegisterClick} width="200px" />
+                        {isPopupOpen && <PopupForm onClose={handleClosePopup} />}
                     </div>
                 </div>
                 <div className="image">
@@ -109,6 +122,7 @@ const ListingPage = () => {
                         <div className="cta-buttons">
                             <DynamicButton buttonName="Download Brochure" handleClick={onDownloadClick} theme='light' width="200px" />
                             <DynamicButton buttonName="Register Interest" handleClick={onRegisterClick} width="200px" />
+                            {isPopupOpen && <PopupForm onClose={handleClosePopup} />}
                         </div>
                     </div>
                 </div>
@@ -138,6 +152,7 @@ const ListingPage = () => {
                         <div className="cta-buttons">
                             <DynamicButton buttonName="Download Brochure" handleClick={onDownloadClick} theme='light' width="200px" />
                             <DynamicButton buttonName="Register Interest" handleClick={onRegisterClick} width="200px" />
+                            {isPopupOpen && <PopupForm onClose={handleClosePopup} />}
                         </div>
                     </div>
                     <div className='detail'>

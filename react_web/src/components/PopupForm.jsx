@@ -5,13 +5,14 @@ import { FaTimes } from 'react-icons/fa';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const PopupForm = ({ onClose, interestOptions }) => {
+const PopupForm = ({ onClose }) => {
   const [formData, setFormData] = useState({
     name: '',
     mobile: '',
     email: '',
     interests: []
   });
+  const interestOptions = ['Condo / Apartment', 'Villas', 'Town House'];
 
   const [errors, setErrors] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false); // State to control form visibility

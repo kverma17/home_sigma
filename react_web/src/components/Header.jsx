@@ -159,7 +159,7 @@ export default function Header({setLimit}) {
         </div>
         <div className="button-container">
           <DynamicButton buttonName="Get in Touch" handleClick={handleButtonClick} />
-          {isPopupOpen && <PopupForm onClose={handleClosePopup} interestOptions={interestOptions} />}
+          {isPopupOpen && <PopupForm onClose={handleClosePopup} />}
         </div>
       </div>
     </header>
