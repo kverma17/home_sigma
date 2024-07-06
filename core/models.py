@@ -1,6 +1,11 @@
+import os
 from django.db import models 
 from django import forms
 from django.core.exceptions import ValidationError
+from PIL import Image
+from io import BytesIO
+from django.core.files.base import ContentFile
+
 # Create your models here. 
 
 
@@ -29,23 +34,23 @@ class Property(models.Model):
     name = models.CharField(max_length=50)
     url = models.CharField(max_length=50)
     detail = models.CharField(max_length=100, blank=True)
-    description = models.CharField(max_length=500, blank=True)
+    description = models.TextField(blank=True)
     category = models.CharField(max_length=50, blank=True)
     label = models.CharField(max_length=255, blank=True)
     builder = models.CharField(max_length=30, blank=True)
     location = models.CharField(max_length=30, blank=True)
     price = models.IntegerField(null=True, blank=True)
     payment_plan = models.CharField(max_length=30, blank=True)
-    hand_over = models.CharField(max_length=10, blank=True)
+    hand_over = models.CharField(max_length=50, blank=True)
     available_units = models.CharField(max_length=10, blank=True)
-    bedrooms = models.CharField(max_length=10, blank=True)
+    bedrooms = models.CharField(max_length=50, blank=True)
     attractions = models.CharField(max_length=255, blank=True)
     features = models.CharField(max_length=255, blank=True)
     brochure_link = models.CharField(max_length=255, blank=True)
     thumbnail = models.ImageField(upload_to='property_images/')
     community = models.CharField(max_length=50, blank=True)
     community_image_url = models.ImageField(upload_to='property_images/', blank=True)
-    community_description = models.CharField(max_length=500, blank=True)
+    community_description = models.TextField(blank=True)
     street = models.CharField(max_length=30, blank=True)
     city = models.CharField(max_length=30, blank=True)
     state = models.CharField(max_length=30, blank=True)
@@ -110,3 +115,20 @@ class PropertyImage(models.Model):
     property_id = models.IntegerField()
     image_url = models.ImageField(upload_to='property_images/')
     created_at = models.DateTimeField(auto_now_add=True)
+
+    def save(self, *args, **kwargs):
+        # Open the uploaded image
+        img = Image.open(self.image_url)
+
+        # Resize and compress the image
+        output_size = (800, 800)  # You can adjust this size as needed
+        img.thumbnail(output_size, Image.LANCZOS)
+        buffer = BytesIO()
+        img.save(buffer, format='JPEG', quality=85)
+        buffer.seek(0)
+
+        # Save the new image to the same field
+        new_filename = os.path.splitext(self.image_url.name)[0] + '.jpg'
+        self.image_url.save(new_filename, ContentFile(buffer.read()), save=False)
+
+        super().save(*args, **kwargs)

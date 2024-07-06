@@ -40,6 +40,9 @@ DEBUG = get_env_variable('DEBUG')
 
 ALLOWED_HOSTS = ['127.0.0.1', '18.234.60.25', 'www.homesigma.ae', 'homesigma.ae', 'localhost']
 
+CSRF_COOKIE_SECURE = True  # Ensure the CSRF cookie is only sent over HTTPS
+CSRF_TRUSTED_ORIGINS = ['https://homesigma.ae', 'https://www.homesigma.ae']  # Add your domain to trusted origins
+
 
 # Application definition
 
