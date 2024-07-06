@@ -5,14 +5,14 @@ import FloatingButtons from '../components/FloatingButtion';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
-const CategoryPage = () => {
+const CategoryPage = ({setLimit, limit}) => {
     const { categoryType } = useParams();
     console.log("categoryType>>>",categoryType)
     const [menuData, setMenuData] = useState([]);
     useEffect(() => {
         const fetchCategoryMenuData = async () => {
             try {
-                const response = await axios.get(`${process.env.REACT_APP_API_URL}/property?category=${categoryType}`);
+                const response = await axios.get(`${process.env.REACT_APP_API_URL}/property?category=${categoryType}&limit=${limit}`);
                 console.log("response>>>>", response.data);
                 setMenuData(response.data);
             } catch (error) {
@@ -21,7 +21,7 @@ const CategoryPage = () => {
         };
         const fetchBuyMenuData = async () => {
             try {
-                const response = await axios.get(`${process.env.REACT_APP_API_URL}/property?type=Buy`);
+                const response = await axios.get(`${process.env.REACT_APP_API_URL}/property?type=Buy&limit=${limit}`);
                 console.log("response>>>>", response.data);
                 setMenuData(response.data);
             } catch (error) {
@@ -30,7 +30,7 @@ const CategoryPage = () => {
         };
         const fetchRentMenuData = async () => {
             try {
-                const response = await axios.get(`${process.env.REACT_APP_API_URL}/property?type=Rent`);
+                const response = await axios.get(`${process.env.REACT_APP_API_URL}/property?type=Rent&limit=${limit}`);
                 console.log("response>>>>", response.data);
                 setMenuData(response.data);
             } catch (error) {
@@ -40,17 +40,17 @@ const CategoryPage = () => {
         if(categoryType==="Buy a Property"){
             fetchBuyMenuData();
         }
-        else if(categoryType==="Sell a Property"){
+        else if(categoryType==="Rent a Property"){
             fetchRentMenuData();
         }
         else{
             fetchCategoryMenuData();
         }
-    }, [categoryType]);
+    }, [categoryType,limit]);
     return (
-        <div className="CategoryPage" style={{backgroundColor:'#efefef', marginTop:"120px"}}>
+        <div className="CategoryPage" style={{backgroundColor:'#efefef', marginTop:"100px"}}>
             {/* <Body filterOptions={filterOptions} setMinPrice={setMinPrice} setMaxPrice={setMaxPrice} setSearchTerm={setSearchTerm} setType={setType} setBedrooms={setBedrooms} setListingType={setListingType} setCompletionStatus={setCompletionStatus}/> */}
-            <Listings listingType={categoryType} menuData={menuData} />
+            <Listings listingType={categoryType} menuData={menuData} limit={limit} setLimit={setLimit}/>
             <FloatingButtons />
         </div>
     );

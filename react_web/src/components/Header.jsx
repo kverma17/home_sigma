@@ -2,17 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { FaBars, FaSearch, FaTimes } from 'react-icons/fa';
-import logo from '../assets/logo.png';
 import DynamicDropdown from './DynamicDropdown';
 import DynamicButton from './Button';
 import PopupForm from './PopupForm';
 import './css/Header.css';
 
-export default function Header() {
+export default function Header({setLimit}) {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [menuData, setMenuData] = useState({});
-  const [data, setData] = useState({});
+  const [data, setData] = useState([]);
   const [showDropdowns, setShowDropdowns] = useState(false);
+  const [showSearchBar, setShowSearchBar] = useState(false);
   const interestOptions = ['Condo / Apartment', 'Villas', 'Town House'];
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
@@ -22,7 +22,6 @@ export default function Header() {
     const fetchMenuData = async () => {
       try {
         const response = await axios.get(`${process.env.REACT_APP_API_URL}/header/`);
-        console.log("response>>>>", response.data);
         setMenuData(response.data);
       } catch (error) {
         console.error('Failed to fetch menu data:', error);
@@ -30,6 +29,8 @@ export default function Header() {
     };
 
     fetchMenuData();
+    setShowDropdowns(false)
+    setShowSearchBar(false)
   }, []);
 
   useEffect(() => {
@@ -59,7 +60,6 @@ export default function Header() {
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-    // Handle search functionality here
     console.log('Search query:', searchQuery);
   };
 
@@ -69,15 +69,38 @@ export default function Header() {
 
   const handleLogoClick = () => {
     navigate('/');
+    setLimit(2);
   };
 
   const handleToggleDropdowns = () => {
     setShowDropdowns(!showDropdowns);
   };
 
+  const handleToggleSearchBar = () => {
+    setShowSearchBar(!showSearchBar);
+  };
+
   const handleSuggestionClick = (suggestion) => {
     setSearchQuery(suggestion);
     setData([]);
+  };
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    // Cleanup event listener on component unmount
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  const formStyle = {
+    display: isMobile ? (showSearchBar ? 'flex' : 'none') : 'block'
   };
 
   return (
@@ -96,11 +119,12 @@ export default function Header() {
               acc[key] = item[key];
               return acc;
             }, {});
-            return <DynamicDropdown key={menu} dropdownName={menu} options={options} />;
+            return <DynamicDropdown key={menu} dropdownName={menu} options={options} setLimit={setLimit}/>;
           })}
         </div>
         <div className="search-container">
-          <form>
+          <form style={ formStyle
+          }>
             <input
               type="text"
               value={searchQuery}
@@ -118,6 +142,11 @@ export default function Header() {
                 </div>
               ))}
             </div>
+          )}
+          { showSearchBar ? (
+            <FaTimes onClick={handleToggleSearchBar} className="search-toggle-faicon" />
+          ) : (
+            <FaSearch onClick={handleToggleSearchBar} className="search-toggle-faicon" />
           )}
         </div>
         <div className="button-container">

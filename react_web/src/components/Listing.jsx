@@ -1,31 +1,12 @@
-// src/Listings.js
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import ListingCard from './ListingCard';
-import './css/Listings.css'; // Create CSS for your component if needed
+import './css/Listings.css';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 
-const Listings = ({ listingType, menuData }) => {
-    const [isHovered, setIsHovered] = useState(false);
-    // const [menuData, setMenuData] = useState([]);
-
+const Listings = ({ listingType, menuData, setLimit,limit }) => {
     const handleClick = () => {
-        // Implement the functionality for loading more listings
+        setLimit(limit+2)
     };
-
-    // useEffect(() => {
-    //     const fetchMenuData = async () => {
-    //         try {
-    //             const response = await axios.get(`${process.env.REACT_APP_API_URL}/property?min_price=1&max_price=1111111&location=`);
-    //             console.log("response>>>>", response.data);
-    //             setMenuData(response.data);
-    //         } catch (error) {
-    //             console.error('Failed to fetch menu data:', error);
-    //         }
-    //     };
-
-    //     fetchMenuData();
-    // }, []);
 
     console.log("listing>>>>>", menuData);
 
@@ -50,8 +31,6 @@ const Listings = ({ listingType, menuData }) => {
                     <div className='load-more-button'>
                         <button
                             onClick={handleClick}
-                            onMouseEnter={() => setIsHovered(true)}
-                            onMouseLeave={() => setIsHovered(false)}
                             className='load-more'
                         >
                             Load More Listings

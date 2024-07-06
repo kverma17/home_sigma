@@ -9,6 +9,7 @@ import axios from 'axios';
 import CategoryPage from './pages/CategoryPage';
 import Team from './pages/OurTeam';
 import Faq from './pages/Faq';
+import TermsOfService from './pages/TermsOfService';
 
 const App = () => {
     function ScrollToTop() {
@@ -40,10 +41,11 @@ const App = () => {
     const [listing, setListingType]=useState("");
     const [completionStatus,setCompletionStatus]=useState("");
     const [menuData, setMenuData] = useState([]);
+    const [limit, setLimit] = useState(2);
     useEffect(() => {
         const fetchMenuData = async () => {
             try {
-                const response = await axios.get(`${process.env.REACT_APP_API_URL}/property?type=${type}&q=${searchTerm}&min_price=${minPrice}&max_price=${maxPrice}`);
+                const response = await axios.get(`${process.env.REACT_APP_API_URL}/property?type=${type}&q=${searchTerm}&min_price=${minPrice}&max_price=${maxPrice}&limit=${limit}`);
                 console.log("response>>>>", response.data);
                 setMenuData(response.data);
             } catch (error) {
@@ -52,7 +54,7 @@ const App = () => {
         };
 
         fetchMenuData();
-    }, [minPrice,maxPrice,type,searchTerm]);
+    }, [minPrice,maxPrice,type,searchTerm,limit]);
     console.log({
           searchTerm,
           bedrooms,
@@ -60,28 +62,27 @@ const App = () => {
           completionStatus,
           maxPrice,
           minPrice,
-          type
+          type,
+          limit
         });
-
 
     return (
         <>
             <BrowserRouter>
-                <Header />
+                <Header setLimit={setLimit}/>
                 <ScrollToTop />
                 <div className="App">
                     <Routes>
-                        <Route path="/" element={<Home listingType={"Premium Luxury Developments"} setMinPrice={setMinPrice} setMaxPrice={setMaxPrice} setSearchTerm={setSearchTerm} setType={setType} setBedrooms={setBedrooms} setListingType={setListingType} setCompletionStatus={setCompletionStatus} menuData={menuData}/>} />
-                        <Route path='/category/:categoryType' element={<CategoryPage />}/>
+                        <Route path="/" element={<Home listingType={"Premium Luxury Developments"} setMinPrice={setMinPrice} setMaxPrice={setMaxPrice} setSearchTerm={setSearchTerm} setType={setType} setBedrooms={setBedrooms} setListingType={setListingType} setCompletionStatus={setCompletionStatus} menuData={menuData} setLimit={setLimit} limit={limit}/>} />
+                        <Route path='/category/:categoryType' element={<CategoryPage setLimit={setLimit} limit={limit}/>}/>
                         <Route path="/property/:propertyId" element={<ListingPage />} />
                         <Route path="/about-home-sigma" element={<About />} />
                         <Route path="/our-team" element={<Team />} />
                         <Route path="/faq" element={<Faq />} />
-
-
+                        <Route path="/terms-of-service" element={<TermsOfService />} />
                     </Routes>
                 </div>
-                <Footer />
+                <Footer setLimit={setLimit}/>
             </BrowserRouter>
         </>
     );

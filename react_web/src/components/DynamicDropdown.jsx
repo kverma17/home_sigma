@@ -4,7 +4,10 @@ import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import './css/DynamicDropdown.css';
 import { Link } from 'react-router-dom';
 
-function DynamicDropdown({ dropdownName, options }) {
+function DynamicDropdown({ dropdownName, options, setLimit }) {
+  const handleLogoClick = () => {
+    setLimit(2);
+  };
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
@@ -39,7 +42,7 @@ function DynamicDropdown({ dropdownName, options }) {
               }
               
               return (
-                <Link to={linkTo} className="listing-link" key={option}>
+                <Link to={linkTo} className="listing-link" key={option} onClick={handleLogoClick}>
                   <Menu.Item>
                     {({ active }) => (
                       <a

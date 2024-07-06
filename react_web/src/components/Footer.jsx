@@ -2,8 +2,12 @@ import React from 'react';
 import { FaInstagram, FaLinkedin, FaYoutube, FaFacebook, FaWhatsapp, FaMobile, FaMailBulk } from 'react-icons/fa';
 import './css/Footer.css';
 import { FaLocationDot } from 'react-icons/fa6';
+import { Link } from 'react-router-dom';
 
-const Footer = () => {
+const Footer = ({setLimit}) => {
+  const handleLogoClick = () => {
+    setLimit(2);
+  };
   return (
     <footer className="footer">
       <div className="footer-container">
@@ -23,25 +27,42 @@ const Footer = () => {
         <div className="our-services">
           <h3>Our Services</h3>
           <ul>
-            <li><a href="#buy">Buy a Property</a></li>
-            <li><a href="#sell">Sell a Property</a></li>
-            <li><a href="#rent">Rent a Property</a></li>
-            <li><a href="#management">Property Management</a></li>
-            <li><a href="#developer-sales">Developer Sales</a></li>
-            <li><a href="#handover">Property Handover</a></li>
-            <li><a href="#all-services">All Our Services</a></li>
+            <li>
+            <Link to={"/category/Buy%20a%20Property"} className="buy" onClick={handleLogoClick}>
+                <a>Buy a Property</a>
+              </Link>
+              </li>
+            {/* <li><a href="#sell">Sell a Property</a></li> */}
+            <li>
+            <Link to={"/category/Rent%20a%20Property"} className="rent" onClick={handleLogoClick}>
+              <a>Rent a Property</a>
+              </Link>
+              </li>
           </ul>
         </div>
         <div className="quick-links">
           <h3>Quick Links</h3>
           <ul>
-            <li><a href="#about">About Home Sigma</a></li>
-            <li><a href="#contact">Contact Us</a></li>
-            <li><a href="#team">Our Team</a></li>
-            <li><a href="#careers">Careers</a></li>
-            <li><a href="#privacy">Privacy Policy</a></li>
-            <li><a href="#terms">Terms of Service</a></li>
-            <li><a href="#faq">FAQ</a></li>
+            <li>
+            <Link to={"/about-home-sigma"} className="about">
+              <a>About Home Sigma</a>
+            </Link>  
+            </li>
+            <li>
+            <Link to={"/terms-of-service"} className="about">
+              <a>Terms of Service</a>
+            </Link>
+            </li>
+            <li>
+            <Link to={"/our-team"} className="about">
+              <a>Our Team</a>
+            </Link>
+            </li>
+            <li>
+            <Link to={"/faq"} className="about">
+              <a>FAQ</a>
+            </Link>
+            </li>
           </ul>
         </div>
         <div className="featured-areas">
@@ -49,9 +70,9 @@ const Footer = () => {
           <ul>
             <li><a href="#downtown">Downtown Dubai</a></li>
             <li><a href="#business-bay">Business Bay</a></li>
-            <li><a href="#creek-harbour">Dubai Creek Harbour</a></li>
-            <li><a href="#dubai-land">Dubai Land</a></li>
-            <li><a href="#jvc">JVC</a></li>
+            {/* <li><a href="#creek-harbour">Dubai Creek Harbour</a></li> */}
+            {/* <li><a href="#dubai-land">Dubai Land</a></li>
+            <li><a href="#jvc">JVC</a></li> */}
             <li><a href="#mbr-city">MBR City</a></li>
             <li><a href="#all-areas">All Our Areas</a></li>
           </ul>
