@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 function DynamicDropdown({ dropdownName, options, setLimit }) {
   const handleLogoClick = () => {
-    setLimit(2);
+    setLimit(16);
   };
   return (
     <Menu as="div" className="relative inline-block text-left">

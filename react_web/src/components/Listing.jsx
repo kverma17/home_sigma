@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const Listings = ({ listingType, menuData, setLimit,limit }) => {
     const handleClick = () => {
-        setLimit(limit+2)
+        setLimit(limit+8)
     };
 
     console.log("listing>>>>>", menuData);

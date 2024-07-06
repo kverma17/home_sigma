@@ -230,15 +230,17 @@
 }
 
 .image-gallery {
-  max-width: 80vw;
   border-radius: 1rem;
   overflow: hidden;
+  height: max-content;
 }
 
 .image-gallery img {
   width: 100%;
 
   border-radius: 8px;
+  height: fit-content;
+  max-height:350px ;
 }
 
 .image img{

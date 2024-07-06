@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Body from '../components/Body';
 import Listings from '../components/Listing';
 import FloatingButtons from '../components/FloatingButtion';
 import axios from 'axios';
@@ -49,7 +48,6 @@ const CategoryPage = ({setLimit, limit}) => {
     }, [categoryType,limit]);
     return (
         <div className="CategoryPage" style={{backgroundColor:'#efefef', marginTop:"100px"}}>
-            {/* <Body filterOptions={filterOptions} setMinPrice={setMinPrice} setMaxPrice={setMaxPrice} setSearchTerm={setSearchTerm} setType={setType} setBedrooms={setBedrooms} setListingType={setListingType} setCompletionStatus={setCompletionStatus}/> */}
             <Listings listingType={categoryType} menuData={menuData} limit={limit} setLimit={setLimit}/>
             <FloatingButtons />
         </div>

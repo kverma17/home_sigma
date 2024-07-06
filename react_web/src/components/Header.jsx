@@ -77,7 +77,7 @@ export default function Header({setLimit}) {
 
   const handleLogoClick = () => {
     navigate('/');
-    setLimit(2);
+    setLimit(16);
   };
 
   const handleToggleDropdowns = () => {

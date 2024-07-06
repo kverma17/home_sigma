@@ -21,7 +21,7 @@ const App = () => {
 
         return null;
     }
-    
+
     useEffect(() => {
         console.log('API URL:', process.env.REACT_APP_API_URL);
         console.log('Environment:', process.env.NODE_ENV);
@@ -41,7 +41,7 @@ const App = () => {
     const [listing, setListingType]=useState("");
     const [completionStatus,setCompletionStatus]=useState("");
     const [menuData, setMenuData] = useState([]);
-    const [limit, setLimit] = useState(2);
+    const [limit, setLimit] = useState(16);
     useEffect(() => {
         const fetchMenuData = async () => {
             try {
@@ -70,16 +70,15 @@ const App = () => {
         <>
             <BrowserRouter>
                 <Header setLimit={setLimit}/>
-                <ScrollToTop />
                 <div className="App">
                     <Routes>
                         <Route path="/" element={<Home listingType={"Premium Luxury Developments"} setMinPrice={setMinPrice} setMaxPrice={setMaxPrice} setSearchTerm={setSearchTerm} setType={setType} setBedrooms={setBedrooms} setListingType={setListingType} setCompletionStatus={setCompletionStatus} menuData={menuData} setLimit={setLimit} limit={limit}/>} />
                         <Route path='/category/:categoryType' element={<CategoryPage setLimit={setLimit} limit={limit}/>}/>
-                        <Route path="/property/:propertyId" element={<ListingPage />} />
-                        <Route path="/about-home-sigma" element={<About />} />
-                        <Route path="/our-team" element={<Team />} />
-                        <Route path="/faq" element={<Faq />} />
-                        <Route path="/terms-of-service" element={<TermsOfService />} />
+                        <Route path="/property/:propertyId" element={<div><ScrollToTop/><ListingPage /></div>} />
+                        <Route path="/about-home-sigma" element={<div><ScrollToTop/><About /></div>} />
+                        <Route path="/our-team" element={<div><ScrollToTop/><Team /></div>} />
+                        <Route path="/faq" element={<div><ScrollToTop/><Faq /></div>} />
+                        <Route path="/terms-of-service" element={<div><ScrollToTop/><TermsOfService /></div>} />
                     </Routes>
                 </div>
                 <Footer setLimit={setLimit}/>

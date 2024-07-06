@@ -32,7 +32,6 @@ const DynamicButton = ({ buttonName, handleClick, theme="dark", width }) => {
     transition: 'all 0.3s ease',
     height: '50px',
     width: width ? width : 'auto',
-    marginLeft: "50px"
   };
   const buttonStyle = theme === 'light' ? buttonStyleLight : buttonStyleDark;
 

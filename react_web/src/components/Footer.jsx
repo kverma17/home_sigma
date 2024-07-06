@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 const Footer = ({setLimit}) => {
   const handleLogoClick = () => {
-    setLimit(2);
+    setLimit(16);
   };
   return (
     <footer className="footer">
