@@ -1,4 +1,5 @@
 from django.db import models 
+from django import forms
 from django.core.exceptions import ValidationError
 # Create your models here. 
 
@@ -12,6 +13,8 @@ class Header(models.Model):
     def __str__(self): 
          return self.name
 
+    class Meta:
+        verbose_name = "Navigation"
 
 class ListingType(models.Model):
     id = models.AutoField(primary_key=True)
@@ -61,6 +64,28 @@ class Property(models.Model):
     def save(self, *args, **kwargs):
         self.clean()  # Perform the validation check
         super(Property, self).save(*args, **kwargs)
+
+class PropertyForm(forms.ModelForm):
+    category = forms.ModelChoiceField(
+        queryset=Header.objects.filter(name__in=['Buy', 'Rent', 'Sell']).values_list('values', flat=True),
+        to_field_name='values',
+        empty_label="Select Category"
+    )
+
+    class Meta:
+        model = Property
+        fields = '__all__'
+        labels = {
+            'detail': 'Headline',
+            'label': 'Tags',
+            'attractions': 'Nearby Famous Places',
+        }
+        help_texts = {
+            'category': 'One of the Navigation values',
+            'label': 'Comma seperated tags',
+            'features': 'Comma seperated tags',
+        }
+
 
 class Leads(models.Model):
     id = models.AutoField(primary_key=True)
