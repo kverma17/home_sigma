@@ -8,7 +8,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 10000; /* High z-index to ensure it is on top */
+  z-index: 100000000; /* High z-index to ensure it is on top */
 }
 
 .popup-form {
@@ -18,7 +18,7 @@
   width: 400px;
   max-width: 90%;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  z-index: 10000001; /* Ensure it is above the overlay */
+  z-index: 1000001; /* Ensure it is above the overlay */
 }
 
 .popup-form h2 {
