@@ -60,7 +60,15 @@ export default function Header({setLimit}) {
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-    console.log('Search query:', searchQuery);
+    if (data && data[0] && data[0].id) {
+      console.log('Search query:', data[0].id);
+      navigate(`/property/${data[0].id}`);
+    } else {
+      console.log('No valid ID found, redirecting to home');
+      navigate('/');
+    }
+    // console.log('Search query:', data[0].id);
+    // navigate(`/property/${data[0].id}`)||navigate('/');
   };
 
   const handleClosePopup = () => {
