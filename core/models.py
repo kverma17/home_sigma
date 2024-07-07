@@ -74,7 +74,7 @@ class Property(models.Model):
         buffer.seek(0)
 
         # Save the new image to the same field
-        new_filename = os.path.splitext(image_column.name)[0] + '.jpg'
+        new_filename = os.path.splitext(image_column.name)[0] + "." + img.format.lower()
         image_column.save(new_filename, ContentFile(buffer.read()), save=False)
 
     def save(self, *args, **kwargs):
@@ -140,7 +140,7 @@ class PropertyImage(models.Model):
         buffer.seek(0)
 
         # Save the new image to the same field
-        new_filename = os.path.splitext(self.image_url.name)[0] + '.jpg'
+        new_filename = os.path.splitext(self.image_url.name)[0] + "." + img.format.lower()
         self.image_url.save(new_filename, ContentFile(buffer.read()), save=False)
 
         super().save(*args, **kwargs)
