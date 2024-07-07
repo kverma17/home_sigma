@@ -62,12 +62,24 @@ class Property(models.Model):
     updated_by = models.CharField(max_length=32, blank=True)
     updated_at = models.DateTimeField(auto_now=True, editable=False, blank=False, null=False)
 
-    def clean(self):
-        if self.category and not Header.objects.filter(values=self.category).exists():
-            raise ValidationError(f'Category "{self.category}" does not exist in Header values.')
+    def optimize_image(self, image_column):
+        # Open the uploaded image
+        img = Image.open(image_column)
+
+        # Resize and compress the image
+        output_size = (800, 800)  # You can adjust this size as needed
+        img.thumbnail(output_size, Image.LANCZOS)
+        buffer = BytesIO()
+        img.save(buffer, format='JPEG', quality=85)
+        buffer.seek(0)
+
+        # Save the new image to the same field
+        new_filename = os.path.splitext(image_column.name)[0] + '.jpg'
+        image_column.save(new_filename, ContentFile(buffer.read()), save=False)
 
     def save(self, *args, **kwargs):
-        self.clean()  # Perform the validation check
+        self.optimize_image(self.thumbnail)
+        self.optimize_image(self.community_image_url)
         super(Property, self).save(*args, **kwargs)
 
 class PropertyForm(forms.ModelForm):
