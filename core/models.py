@@ -79,7 +79,8 @@ class Property(models.Model):
 
     def save(self, *args, **kwargs):
         self.optimize_image(self.thumbnail)
-        self.optimize_image(self.community_image_url)
+        if self.community_image_url:
+            self.optimize_image(self.community_image_url)
         super(Property, self).save(*args, **kwargs)
 
 class PropertyForm(forms.ModelForm):
