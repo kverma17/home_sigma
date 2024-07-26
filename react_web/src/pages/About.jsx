@@ -21,7 +21,7 @@ const About = () => {
             <h2>Get in Touch</h2>
             <p>Whether you are a first-time buyer, seasoned investor, or property owner looking to maximize returns, contact HomeSigma Real Estate LLC today. Explore the possibilities with us and experience the difference of working with a dedicated team that puts your needs first.</p>
             <h2>Contact Information:</h2>
-            <ul><li><b>Address:</b> I-SH/R 10, P1 / BLOCK I, Saih Shuaib 2, Dubai Industrial City, Dubai, U.A.E.</li>
+            <ul><li><b>Address:</b> Dubai, U.A.E.</li>
             <li><b>Email:</b> Homesigmarealestate@gmail.com</li>
             <li><b>WhatsApp:</b> +971 50 275 4127</li>
             <li><b>Phone:</b> +971 50 275 4127, +971 56 889 9896</li>
