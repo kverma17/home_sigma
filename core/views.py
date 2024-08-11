@@ -134,6 +134,15 @@ class LeadHistoryView(APIView):
         lead_history = [LeadHistorySerializer(lead).data for lead in LeadHistory.objects.filter(lead_id=pk)]
         return Response(lead_history)
 
+
+class BuildersView(APIView):
+
+    serializer_class = BuilderSerializer
+
+    def get(self, request):
+        builder_details = [BuilderSerializer(builder).data for builder in Builder.objects.all()]
+        return Response(builder_details)
+
 # Autocomplete API
 @api_view(['GET'])
 def autocomplete(request):
@@ -155,3 +164,4 @@ def autocomplete(request):
             prop_seen[prop['id']] = 1
 
     return Response(results)
+

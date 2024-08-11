@@ -1,5 +1,5 @@
 from rest_framework import generics, serializers 
-from . models import Property, ListingType, Header, Leads, LeadHistory
+from . models import Property, ListingType, Header, Leads, LeadHistory, Builder
 
 
 class HeaderSerializer(serializers.ModelSerializer):
@@ -36,8 +36,13 @@ class LeadsSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-
 class LeadHistorySerializer(serializers.ModelSerializer):
     class Meta:
         model = LeadHistory
         fields = '__all__'
+
+
+class BuilderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Builder
+        fields = '__all__' 
