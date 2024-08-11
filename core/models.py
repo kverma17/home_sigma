@@ -29,6 +29,14 @@ class ListingType(models.Model):
         return self.name
 
 
+class Builder(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=50, blank=True)
+
+    def __str__(self):
+        return self.name
+
+
 class Property(models.Model): 
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50)
@@ -88,6 +96,11 @@ class PropertyForm(forms.ModelForm):
         queryset=Header.objects.filter(name__in=['Buy', 'Rent', 'Sell']).values_list('values', flat=True),
         to_field_name='values',
         empty_label="Select Category"
+    )
+    builder = forms.ModelChoiceField(
+        queryset=Builder.objects.all().values_list('name', flat=True),
+        to_field_name='name',
+        empty_label="Select a Builder"
     )
 
     class Meta:
