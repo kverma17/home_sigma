@@ -82,7 +82,8 @@ class Property(models.Model):
         buffer.seek(0)
 
         # Save the new image to the same field
-        new_filename = os.path.splitext(image_column.name)[0] + "." + img.format.lower()
+        base_name = os.path.basename(image_column.name)
+        new_filename = os.path.splitext(base_name)[0] + "." + img.format.lower()
         image_column.save(new_filename, ContentFile(buffer.read()), save=False)
 
     def save(self, *args, **kwargs):
