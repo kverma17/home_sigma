@@ -1,0 +1,73 @@
+  
+  .developers-header {
+    margin-bottom: 40px;
+  }
+  
+  .developers-header h1 {
+    font-size: 36px;
+    font-weight: 700;
+  }
+  
+  .breadcrumb {
+    font-size: 14px;
+    color: #8c8c8c;
+    margin-top: 10px;
+  }
+  
+  
+  .developers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(31.5%, 1fr));
+    gap: 30px;
+  }
+  
+  .developers-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+  }
+  
+  .developers-card:hover {
+    transform: translateY(-10px);
+  }
+  
+  .developers-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 5px solid #d0af5a;
+  }
+  
+  .developers-info {
+    padding: 20px;
+  }
+  
+  .developers-logo {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: white;
+    padding: 5px 10px;
+    border-radius: 10px;
+    height: 30;
+    width: 50;
+  }
+  
+  .developers-info h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  
+  .developers-info p {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  @media only screen and (max-width: 768px) {
+    .developers-grid {
+        grid-template-columns: repeat(auto-fill, minmax(90%, 1fr));
+      }
+  }

@@ -10,6 +10,8 @@ import CategoryPage from './pages/CategoryPage';
 import Team from './pages/OurTeam';
 import Faq from './pages/Faq';
 import TermsOfService from './pages/TermsOfService';
+import DubaiAreas from './pages/DubaiAreas';
+import Developers from './pages/Developers';
 
 const App = () => {
     function ScrollToTop() {
@@ -79,6 +81,8 @@ const App = () => {
                         <Route path="/our-team" element={<div><ScrollToTop/><Team /></div>} />
                         <Route path="/faq" element={<div><ScrollToTop/><Faq /></div>} />
                         <Route path="/terms-of-service" element={<div><ScrollToTop/><TermsOfService /></div>} />
+                        <Route path="/areas" element={<div><ScrollToTop/><DubaiAreas /></div>} />
+                        <Route path='/developers' element={<div><ScrollToTop /><Developers /></div>} />
                     </Routes>
                 </div>
                 <Footer setLimit={setLimit}/>

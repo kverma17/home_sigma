@@ -14,7 +14,7 @@
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.9);
   }
   
-  .listing-card img {
+  .thumbnail {
     width: 100%;
     height: 200px;
     object-fit: cover;
@@ -48,10 +48,48 @@
   .listing-price {
     margin: 8px 0;
   }
-
-  @media (max-width: 768px) {
-    .listing-card {
-      width: 100%;
+    .agent-details {
+      display: flex;
+      align-items: center;
+      padding-top: 16px;
+      border-top: 1px solid #e0e0e0;
+      margin-top: 16px;
     }
-  }
+    
+    .agent-image {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 12px;
+    }
+
+    .agent-info {
+      flex-grow: 1;
+    }
+    
+    .agent-name {
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    
+    .agent-role {
+      font-size: 14px;
+      color: #7c7c7c;
+    }
+    
+    .agent-contact {
+      display: flex;
+      gap: 30px;
+      text-decoration: none;
+    }
+    .agent-contact-icon:hover {
+      scale: 1.3;
+    }
+    @media (max-width: 768px) {
+      .listing-card {
+        width: 100%;
+      }
+    }
+    
   

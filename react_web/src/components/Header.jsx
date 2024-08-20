@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { FaBars, FaSearch, FaTimes } from 'react-icons/fa';
 import DynamicDropdown from './DynamicDropdown';
@@ -129,6 +129,16 @@ export default function Header({setLimit}) {
             }, {});
             return <DynamicDropdown key={menu} dropdownName={menu} options={options} setLimit={setLimit}/>;
           })}
+        </div>
+        <div style={{ paddingRight:10, display: "inline-flex",
+    gap: 20}}>
+        <Link to="/areas" className="areas" >
+  <h4>Areas</h4>
+</Link>
+<Link to="/areas" className="areas" >
+  <h4>Developers</h4>
+</Link>
+
         </div>
         <div className="search-container">
           <form style={ formStyle

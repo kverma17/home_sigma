@@ -14,7 +14,7 @@ const Footer = ({setLimit}) => {
         <div className="contact-us">
           <h3>Contact Us</h3>
           <p><FaLocationDot/> Dubai, U.A.E</p>
-          <p><FaMailBulk/> Email: <a href="mailto:Homesigmarealestate@gmail.com">Homesigmarealestate@gmail.com</a></p>
+          <p><FaMailBulk/> Email: <a href="mailto:Info@homesigma.com">Info@homesigma.com</a>, <a href="mailto:Leads@homesigma.com">Leads@homesigma.com</a></p>
           <p><FaWhatsapp /> WhatsApp: <a href="https://wa.me/971502754127">+971 50 275 4127</a></p>
           <p><FaMobile /> Phone: <a href="tel:+971502754127">+971 50 275 4127</a>, <a href="tel:+971568899896">+971 56 889 9896</a></p>
           <div className="social-icons">

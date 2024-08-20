@@ -17,15 +17,14 @@ const Listings = ({ listingType, menuData, setLimit,limit }) => {
                 <div className="allListings">
                     <div className="listings">
                         {Array.isArray(menuData) && menuData.map(listing => (
-                            <Link to={`/property/${listing.id}`} key={listing.name} className="listing-link">
                                 <ListingCard
                                     image={listing?.thumbnail}
                                     labels={listing?.label?.split(", ")}
                                     location={listing.location}
                                     name={listing.name}
                                     price={listing.price}
+                                    redirectTo={listing.id}
                                 />
-                            </Link>
                         ))}
                     </div>
                     <div className='load-more-button'>

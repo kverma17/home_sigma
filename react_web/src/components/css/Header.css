@@ -83,7 +83,15 @@
   height: 30px;
   border-radius: 50px;
 }
+.areas {
+  text-decoration: none;
+  color: black;
+  transition: color 0.3s ease;
+}
 
+.areas:hover {
+  color: goldenrod;
+}
 .search-faicon {
   position: absolute;
   right: 10px;
