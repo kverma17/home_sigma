@@ -117,8 +117,7 @@ class Property(models.Model):
         self.optimize_image(self.thumbnail)
         if self.community_image_url:
             self.optimize_image(self.community_image_url)
-        if self.qr_code:
-            self.optimize_image(self.qr_code)
+
         super(Property, self).save(*args, **kwargs)
 
 class PropertyForm(forms.ModelForm):
