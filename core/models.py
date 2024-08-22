@@ -31,7 +31,29 @@ class ListingType(models.Model):
 
 class Builder(models.Model):
     id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=50, blank=True)
+    name = models.CharField(max_length=100, blank=True)
+    photo = models.ImageField(upload_to='builder_images/', blank=True)
+
+    def __str__(self):
+        return self.name
+
+
+class Location(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=100, blank=True)
+    description = models.CharField(max_length=200, blank=True)
+    photo = models.ImageField(upload_to='location_images/', blank=True)
+
+    def __str__(self):
+        return self.name
+
+
+class Users(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=100, blank=True)
+    contact_no = models.CharField(max_length=15, blank=True)
+    role = models.CharField(max_length=50, blank=True)
+    photo = models.ImageField(upload_to='user_images/', blank=True)
 
     def __str__(self):
         return self.name
@@ -47,6 +69,7 @@ class Property(models.Model):
     label = models.CharField(max_length=255, blank=True)
     builder = models.CharField(max_length=30, blank=True)
     location = models.CharField(max_length=30, blank=True)
+    map_link = models.CharField(max_length=500, blank=True)
     price = models.IntegerField(null=True, blank=True)
     payment_plan = models.CharField(max_length=30, blank=True)
     hand_over = models.CharField(max_length=50, blank=True)
@@ -56,6 +79,8 @@ class Property(models.Model):
     features = models.CharField(max_length=255, blank=True)
     brochure_link = models.CharField(max_length=255, blank=True)
     thumbnail = models.ImageField(upload_to='property_images/')
+    qr_code = models.ImageField(upload_to='property_images/', blank=True)
+    video_link = models.CharField(max_length=500, blank=True)
     community = models.CharField(max_length=50, blank=True)
     community_image_url = models.ImageField(upload_to='property_images/', blank=True)
     community_description = models.TextField(blank=True)
@@ -69,6 +94,8 @@ class Property(models.Model):
     created_by = models.CharField(max_length=32, blank=True)
     updated_by = models.CharField(max_length=32, blank=True)
     updated_at = models.DateTimeField(auto_now=True, editable=False, blank=False, null=False)
+    rera = models.CharField(max_length=20, blank=True)
+    project_id = models.CharField(max_length=20, blank=True)
 
     def optimize_image(self, image_column):
         # Open the uploaded image
@@ -90,6 +117,8 @@ class Property(models.Model):
         self.optimize_image(self.thumbnail)
         if self.community_image_url:
             self.optimize_image(self.community_image_url)
+        if self.qr_code:
+            self.optimize_image(self.qr_code)
         super(Property, self).save(*args, **kwargs)
 
 class PropertyForm(forms.ModelForm):
@@ -102,6 +131,16 @@ class PropertyForm(forms.ModelForm):
         queryset=Builder.objects.all().values_list('name', flat=True),
         to_field_name='name',
         empty_label="Select a Builder"
+    )
+    location = forms.ModelChoiceField(
+        queryset=Location.objects.all().values_list('name', flat=True),
+        to_field_name='name',
+        empty_label="Select a Location"
+    )
+    created_by = forms.ModelChoiceField(
+        queryset=Users.objects.all().values_list('name', flat=True),
+        to_field_name='name',
+        empty_label="Select a User"
     )
 
     class Meta:

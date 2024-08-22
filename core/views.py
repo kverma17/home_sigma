@@ -103,6 +103,10 @@ class PropertyDetailView(APIView):
             for l_type in listing_types:
                 type_name = ListingType.objects.filter(id=l_type).values_list('name', flat=True).first()
                 property_data['listing_types'].append(type_name)
+
+            # Agent details
+            created_by = property_data['created_by']
+            property_data['agent_details'] = Users.objects.filter(name=created_by).values().first()
             
             images = PropertyImage.objects.filter(property_id=property_obj.id)
             property_data['images'] = [image.image_url.url for image in images]
@@ -142,6 +146,15 @@ class BuildersView(APIView):
     def get(self, request):
         builder_details = [BuilderSerializer(builder).data for builder in Builder.objects.all()]
         return Response(builder_details)
+
+
+class LocationsView(APIView):
+
+    serializer_class = LocationSerializer
+
+    def get(self, request):
+        location_details = [LocationSerializer(location).data for location in Location.objects.all()]
+        return Response(location_details)
 
 # Autocomplete API
 @api_view(['GET'])

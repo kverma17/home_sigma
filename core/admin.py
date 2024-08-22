@@ -1,10 +1,12 @@
 from django.contrib import admin
-from .models import Property, ListingType, Header, Leads, LeadHistory, PropertyImage, PropertyForm, Builder
+from .models import Property, ListingType, Header, Leads, LeadHistory, PropertyImage, PropertyForm, Builder, Location, Users
 # Register your models here.
 
 admin.site.register(ListingType)
 admin.site.register(LeadHistory)
 admin.site.register(Builder)
+admin.site.register(Location)
+admin.site.register(Users)
 
 @admin.register(Leads)
 class LeadsAdmin(admin.ModelAdmin):

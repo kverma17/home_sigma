@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from core.views import PropertyView, PropertyDetailView, RentPropertyList, SellPropertyList, HeaderView, LeadsView, \
-    LeadHistoryView, autocomplete, BuildersView
+    LeadHistoryView, autocomplete, BuildersView, LocationsView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,4 +30,5 @@ urlpatterns = [
     path('leads/', LeadsView.as_view(), name="leads"),
     path('lead/<int:pk>/', LeadHistoryView.as_view(), name="leads-history"),
     path('builders/', BuildersView.as_view(), name="builders"),
+    path('locations/', LocationsView.as_view(), name="locations"),
 ]
