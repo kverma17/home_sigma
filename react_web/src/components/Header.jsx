@@ -129,16 +129,16 @@ export default function Header({setLimit}) {
             }, {});
             return <DynamicDropdown key={menu} dropdownName={menu} options={options} setLimit={setLimit}/>;
           })}
-        </div>
-        <div style={{ paddingRight:10, display: "inline-flex",
+          <div style={{ paddingRight:10, display: "inline-flex",
     gap: 20}}>
         <Link to="/areas" className="areas" >
-  <h4>Areas</h4>
+  <h4 style={{margin:5, marginTop:13}}>Areas</h4>
 </Link>
-<Link to="/areas" className="areas" >
-  <h4>Developers</h4>
+<Link to="/developers" className="areas" >
+  <h4 style={{ marginTop:13}}>Developers</h4>
 </Link>
 
+        </div>
         </div>
         <div className="search-container">
           <form style={ formStyle

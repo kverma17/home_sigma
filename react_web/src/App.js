@@ -12,6 +12,8 @@ import Faq from './pages/Faq';
 import TermsOfService from './pages/TermsOfService';
 import DubaiAreas from './pages/DubaiAreas';
 import Developers from './pages/Developers';
+import BuilderListing from './pages/BuildersListing';
+import AreaListing from './pages/AreaListing';
 
 const App = () => {
     function ScrollToTop() {
@@ -76,6 +78,8 @@ const App = () => {
                     <Routes>
                         <Route path="/" element={<Home listingType={"Premium Luxury Developments"} setMinPrice={setMinPrice} setMaxPrice={setMaxPrice} setSearchTerm={setSearchTerm} setType={setType} setBedrooms={setBedrooms} setListingType={setListingType} setCompletionStatus={setCompletionStatus} menuData={menuData} setLimit={setLimit} limit={limit}/>} />
                         <Route path='/category/:categoryType' element={<CategoryPage setLimit={setLimit} limit={limit}/>}/>
+                        <Route path='/builders/:builderType' element={<BuilderListing setLimit={setLimit} limit={limit}/>}/>
+                        <Route path='/areas/:areaListing' element={<AreaListing setLimit={setLimit} limit={limit}/>}/>
                         <Route path="/property/:propertyId" element={<div><ScrollToTop/><ListingPage /></div>} />
                         <Route path="/about-home-sigma" element={<div><ScrollToTop/><About /></div>} />
                         <Route path="/our-team" element={<div><ScrollToTop/><Team /></div>} />

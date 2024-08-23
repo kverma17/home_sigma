@@ -11,7 +11,7 @@ const Listings = ({ listingType, menuData, setLimit,limit }) => {
     console.log("listing>>>>>", menuData);
 
     return (
-        <div className="container">
+        <div>
             <div>
                 <h1 style={{ margin: '30px' }}>{listingType}</h1>
                 <div className="allListings">
