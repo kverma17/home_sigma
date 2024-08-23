@@ -1,5 +1,6 @@
 import json
 from django.db.models import Q
+from django.forms.models import model_to_dict
 from rest_framework import generics
 from rest_framework.views import APIView 
 from rest_framework.decorators import api_view
@@ -81,6 +82,16 @@ class PropertyView(APIView):
         # Serialize the data
         serialized_data = PropertySerializer(paginated_property_objs, many=True).data
 
+        # Agent details
+        for property_data in serialized_data:
+            created_by = property_data['created_by']
+            agent = Users.objects.filter(name=created_by).first()
+
+            if agent:
+                agent_details = model_to_dict(agent)
+                agent_details['photo'] = agent.photo.url if agent.photo else 'https://homesigmaimages.s3.amazonaws.com/user_images/2606517_5856.jpg'
+                property_data['agent_details'] = agent_details
+
         return Response(serialized_data)
 
     def post(self, request): 
@@ -106,7 +117,12 @@ class PropertyDetailView(APIView):
 
             # Agent details
             created_by = property_data['created_by']
-            property_data['agent_details'] = Users.objects.filter(name=created_by).values().first()
+            agent = Users.objects.filter(name=created_by).first()
+
+            if agent:
+                agent_details = model_to_dict(agent)
+                agent_details['photo'] = agent.photo.url if agent.photo else 'https://homesigmaimages.s3.amazonaws.com/user_images/2606517_5856.jpg'
+                property_data['agent_details'] = agent_details
             
             images = PropertyImage.objects.filter(property_id=property_obj.id)
             property_data['images'] = [image.image_url.url for image in images]
