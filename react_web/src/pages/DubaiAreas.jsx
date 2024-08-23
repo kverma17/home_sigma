@@ -68,9 +68,9 @@ const DubaiAreas = () => {
         {menuData.map((area, index) => (
             <Link to={`/areas/${area.name}`} className="listing-link">
                 <div className="area-card" key={index}>
-                    <img src={area.image} alt={area.name} className="area-image" />
+                    <img src={area.photo} alt={area.name} className="area-image" />
                     <div className="area-info">
-                    <div className="area-price">{area.price}</div>
+                    {/* <div className="area-price">{area.price}</div> */}
                     <h2>{area.name}</h2>
                     <p>{area.description}</p>
                     </div>
