@@ -1,4 +1,5 @@
 import json
+import re
 from django.db.models import Q
 from django.forms.models import model_to_dict
 from rest_framework import generics
@@ -109,6 +110,8 @@ class PropertyDetailView(APIView):
         property_obj = Property.objects.filter(id=pk).first()
         property_data = PropertySerializer(property_obj).data	
         if property_obj:
+            property_data['description'] = re.sub(r'(\r\n|\r|\n)', '<br>', property_data['description'])
+
             listing_types = property_data['listing_types']
             property_data['listing_types'] = []
             for l_type in listing_types:
