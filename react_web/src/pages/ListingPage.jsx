@@ -147,44 +147,44 @@ const ListingPage = () => {
                     ))}
                 </div>
                 <div>
-                    <iframe  src={menuData.video_link} style={{marginTop:"60px", marginBottom:60}} className='youtube'></iframe>
+                    <iframe  src="https://www.youtube.com/embed/tgbNymZ7vqY" style={{marginTop:"60px", marginBottom:60}} className='youtube' title="YouTube video player"></iframe>
 
                 </div>
                 <div style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
                     <div class="container">
                         <div class="qr-code">
                             <h1 style={{marginLeft:30}}>Map View</h1>
-                            <iframe src={menuData.map_link} width="90%" height="450" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3610.1786534495045!2d55.27437639999999!3d25.197197!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f43348a67e24b%3A0xff45e502e1ceb7e2!2sBurj%20Khalifa!5e0!3m2!1sen!2sin!4v1724093312377!5m2!1sen!2sin" width="90%" height="450" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
                         <div className="profile-page-container">
                             <div className="profile-container">
                                 <h1 className="profile-heading">Listing by</h1>
                                 <div className="profile-info-container">
                                     <img 
-                                    src={menuData?.agent_details?.photo}
+                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIEd2zxEc_4IQ1jHyniHLECu15zRjkHTBJzA&s"
                                     alt="Profile"
                                     className="profile-image"
                                     />
                                     <div className="profile-info">
-                                    <h3 className="profile-name">{menuData?.agent_details?.name}</h3>
-                                    <p className="profile-title">{menuData?.agent_details?.role}</p>
+                                    <h3 className="profile-name">Aman</h3>
+                                    <p className="profile-title">Sales Adviser</p>
                                     </div>
                                 </div>
                                 <button className="contact-button">Contact Me</button>
                                 <div className="icon-container">
-                                    <a href={`https://wa.me/${menuData?.agent_details?.contact_no}`} className="icon-link">
+                                    <a href="https://wa.me/8527281066" className="icon-link">
                                         <FaWhatsapp style={{ zIndex: 1000,width: "24px", height: "24px", color:"black", scale:"1.2"}}/>
                                     </a>
-                                    <a href={`tel:+${menuData?.agent_details?.contact_no}`} className="icon-link">
+                                    <a href="tel:+8527281066" className="icon-link">
                                         <FaPhone style={{ transform: 'rotate(90deg)', zIndex: 1000, width: 24, height: 24, color:"black"}}/>
                                     </a>
-                                    <a href={`mailto:${menuData?.agent_details?.email||"leads@homesigma.ae"}`} className="icon-link">
+                                    <a href="mailto:youremail@example.com" className="icon-link">
                                         <FaEnvelope style={{ zIndex: 1000,width: "24px", height: "24px", color:"black", scale:"1.2"}}/>
                                     </a>
                                 </div>
                             </div>
                             <div className="qr-code-container">
-                                <img src={menuData.qr_code} alt="QR Code" style={{height:120, width:120}}/>
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-SAnzQR1OYIQWiv4yLuCinQunCai6hinWcA&s" alt="QR Code" style={{height:120, width:120}}/>
                             </div>
                         </div>
                     </div>

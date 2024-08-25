@@ -24,6 +24,10 @@ const Listings = ({ listingType, menuData, setLimit,limit }) => {
                                     name={listing.name}
                                     price={listing.price}
                                     redirectTo={listing.id}
+                                    agentName={listing?.agent_details?.name} 
+                                    agentRole={listing?.agent_details?.role} 
+                                    agentImage={listing?.agent_details?.photo}
+                                    agentPhoneNumber = {listing?.agent_details?.contact_no}
                                 />
                         ))}
                     </div>
