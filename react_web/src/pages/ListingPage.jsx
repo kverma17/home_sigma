@@ -71,7 +71,7 @@ const ListingPage = () => {
     };
     const currentUrl = window.location.href;
 
-    let formattedResponse = menuData.description.replace(/<br\s*\/?>/gi, '\n');
+
     return (
         <div className="serenity-mansions">
             <nav>
@@ -118,7 +118,7 @@ const ListingPage = () => {
                         <h2>{menuData.name || "To add"}</h2>
                     </div>
                     <div className="description">
-                        <p>{formattedResponse || "To add"}</p>
+                        <p>{menuData.description || "To add"}</p>
                         <div className="cta-buttons">
                             <DynamicButton buttonName="Download Brochure" handleClick={onDownloadClick} theme='light' width="200px" />
                             <DynamicButton buttonName="Register Interest" handleClick={onRegisterClick} width="200px" />
