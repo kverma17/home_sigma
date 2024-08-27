@@ -110,7 +110,7 @@ class PropertyDetailView(APIView):
         property_obj = Property.objects.filter(id=pk).first()
         property_data = PropertySerializer(property_obj).data	
         if property_obj:
-            property_data['description'] = re.sub(r'(\r\n|\r|\n)', '<br>', property_data['description'])
+            # property_data['description'] = re.sub(r'(\r\n|\r|\n)', '<br>', property_data['description'])
 
             listing_types = property_data['listing_types']
             property_data['listing_types'] = []

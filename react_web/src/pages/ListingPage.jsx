@@ -118,7 +118,7 @@ const ListingPage = () => {
                         <h2>{menuData.name || "To add"}</h2>
                     </div>
                     <div className="description">
-                        <p>{menuData.description || "To add"}</p>
+                        <p style={{ whiteSpace: 'pre-line' }}>{menuData.description || "To add"}</p>
                         <div className="cta-buttons">
                             <DynamicButton buttonName="Download Brochure" handleClick={onDownloadClick} theme='light' width="200px" />
                             <DynamicButton buttonName="Register Interest" handleClick={onRegisterClick} width="200px" />
