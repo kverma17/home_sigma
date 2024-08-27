@@ -18,10 +18,10 @@ const Footer = ({setLimit}) => {
           <p><FaWhatsapp /> WhatsApp: <a href="https://wa.me/971502754127">+971 50 275 4127</a></p>
           <p><FaMobile /> Phone: <a href="tel:+971502754127">+971 50 275 4127</a>, <a href="tel:+971568899896">+971 56 889 9896</a></p>
           <div className="social-icons">
-            <a href="https://www.instagram.com" aria-label="Instagram"><FaInstagram /></a>
-            <a href="https://www.linkedin.com" aria-label="LinkedIn"><FaLinkedin /></a>
-            <a href="https://www.youtube.com" aria-label="YouTube"><FaYoutube /></a>
-            <a href="https://www.facebook.com" aria-label="Facebook"><FaFacebook /></a>
+            <a href="https://www.instagram.com/homesigmadubai" aria-label="Instagram"><FaInstagram /></a>
+            {/* <a href="https://www.linkedin.com" aria-label="LinkedIn"><FaLinkedin /></a>
+            <a href="https://www.youtube.com" aria-label="YouTube"><FaYoutube /></a> */}
+            <a href="https://www.facebook.com/share/bK5711LHL9HmKmDq/?mibextid=LQQJ4d" aria-label="Facebook"><FaFacebook /></a>
           </div>
         </div>
         <div className="our-services">
