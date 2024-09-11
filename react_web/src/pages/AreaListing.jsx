@@ -5,6 +5,25 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
 const AreaListing = ({setLimit, limit}) => {
+    useEffect(() => {
+        const addGtagScript = () => {
+            const script = document.createElement('script');
+            script.async = true;
+            script.src = 'https://www.googletagmanager.com/gtag/js?id=G-P5WOMGNNSS'; 
+            document.head.appendChild(script);
+
+            const scriptContent = document.createElement('script');
+            scriptContent.innerHTML = `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-P5WOMGNNSS');
+            `;
+            document.head.appendChild(scriptContent);
+        };
+
+        addGtagScript();
+    }, []);
     const { areaListing } = useParams();
     console.log("builderType>>>",areaListing)
     const search=areaListing.replace('%20', ' ');

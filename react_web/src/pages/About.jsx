@@ -1,7 +1,26 @@
 // src/pages/About.jsx
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const About = () => {
+    useEffect(() => {
+        const addGtagScript = () => {
+            const script = document.createElement('script');
+            script.async = true;
+            script.src = 'https://www.googletagmanager.com/gtag/js?id=G-P5WOMGNNSS'; 
+            document.head.appendChild(script);
+
+            const scriptContent = document.createElement('script');
+            scriptContent.innerHTML = `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-P5WOMGNNSS');
+            `;
+            document.head.appendChild(scriptContent);
+        };
+
+        addGtagScript();
+    }, []);
     return (
         <div className="About" style={{marginTop:"100px", marginLeft:"30px", padding:"20px"}}>
             <h1>About Us</h1>

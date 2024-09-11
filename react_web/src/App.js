@@ -15,22 +15,22 @@ import Developers from './pages/Developers';
 import BuilderListing from './pages/BuildersListing';
 import AreaListing from './pages/AreaListing';
 
+const ScrollToTop = () => {
+    const { pathname } = useLocation();
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [pathname]);
+
+    return null;
+};
+
 const App = () => {
-    function ScrollToTop() {
-        const { pathname } = useLocation();
-
-        useEffect(() => {
-            window.scrollTo(0, 0);
-        }, [pathname]);
-
-        return null;
-    }
-
     useEffect(() => {
         const addGtagScript = () => {
             const script = document.createElement('script');
             script.async = true;
-            script.src = 'https://www.googletagmanager.com/gtag/js?id=G-P5WOMGNNSS'; // Replace with your actual GA ID
+            script.src = 'https://www.googletagmanager.com/gtag/js?id=G-P5WOMGNNSS'; 
             document.head.appendChild(script);
 
             const scriptContent = document.createElement('script');
@@ -38,22 +38,13 @@ const App = () => {
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
-                gtag('config', 'G-P5WOMGNNSS'); // Replace with your actual GA ID
+                gtag('config', 'G-P5WOMGNNSS');
             `;
             document.head.appendChild(scriptContent);
         };
 
         addGtagScript();
     }, []);
-
-    const location = useLocation();
-    useEffect(() => {
-        if (window.gtag) {
-            window.gtag('config', 'G-P5WOMGNNSS', {
-                page_path: location.pathname,
-            });
-        }
-    }, [location]);
 
     const [minPrice, setMinPrice] = useState(0);
     const [maxPrice, setMaxPrice] = useState(9999999999);
@@ -81,111 +72,58 @@ const App = () => {
         fetchMenuData();
     }, [minPrice, maxPrice, type, searchTerm, limit]);
 
+    console.log({
+        searchTerm,
+        bedrooms,
+        listing,
+        completionStatus,
+        maxPrice,
+        minPrice,
+        type,
+        limit,
+    });
 
     return (
-        <>
-            <BrowserRouter>
-                <Header setLimit={setLimit} />
-                <div className="App">
-                    <Routes>
-                        <Route
-                            path="/"
-                            element={
-                                <Home
-                                    listingType={'Premium Luxury Developments'}
-                                    setMinPrice={setMinPrice}
-                                    setMaxPrice={setMaxPrice}
-                                    setSearchTerm={setSearchTerm}
-                                    setType={setType}
-                                    setBedrooms={setBedrooms}
-                                    setListingType={setListingType}
-                                    setCompletionStatus={setCompletionStatus}
-                                    menuData={menuData}
-                                    setLimit={setLimit}
-                                    limit={limit}
-                                />
-                            }
-                        />
-                        <Route
-                            path="/category/:categoryType"
-                            element={<CategoryPage setLimit={setLimit} limit={limit} />}
-                        />
-                        <Route
-                            path="/builders/:builderType"
-                            element={<BuilderListing setLimit={setLimit} limit={limit} />}
-                        />
-                        <Route
-                            path="/areas/:areaListing"
-                            element={<AreaListing setLimit={setLimit} limit={limit} />}
-                        />
-                        <Route
-                            path="/property/:propertyId"
-                            element={
-                                <div>
-                                    <ScrollToTop />
-                                    <ListingPage />
-                                </div>
-                            }
-                        />
-                        <Route
-                            path="/about-home-sigma"
-                            element={
-                                <div>
-                                    <ScrollToTop />
-                                    <About />
-                                </div>
-                            }
-                        />
-                        <Route
-                            path="/our-team"
-                            element={
-                                <div>
-                                    <ScrollToTop />
-                                    <Team />
-                                </div>
-                            }
-                        />
-                        <Route
-                            path="/faq"
-                            element={
-                                <div>
-                                    <ScrollToTop />
-                                    <Faq />
-                                </div>
-                            }
-                        />
-                        <Route
-                            path="/terms-of-service"
-                            element={
-                                <div>
-                                    <ScrollToTop />
-                                    <TermsOfService />
-                                </div>
-                            }
-                        />
-                        <Route
-                            path="/areas"
-                            element={
-                                <div>
-                                    <ScrollToTop />
-                                    <DubaiAreas />
-                                </div>
-                            }
-                        />
-                        <Route
-                            path="/developers"
-                            element={
-                                <div>
-                                    <ScrollToTop />
-                                    <Developers />
-                                </div>
-                            }
-                        />
-                    </Routes>
-                </div>
-                <Footer setLimit={setLimit} />
-            </BrowserRouter>
-        </>
+        <BrowserRouter>
+            <ScrollToTop />
+            <Header setLimit={setLimit} />
+            <div className="App">
+                <Routes>
+                    <Route
+                        path="/"
+                        element={
+                            <Home
+                                listingType={'Premium Luxury Developments'}
+                                setMinPrice={setMinPrice}
+                                setMaxPrice={setMaxPrice}
+                                setSearchTerm={setSearchTerm}
+                                setType={setType}
+                                setBedrooms={setBedrooms}
+                                setListingType={setListingType}
+                                setCompletionStatus={setCompletionStatus}
+                                menuData={menuData}
+                                setLimit={setLimit}
+                                limit={limit}
+                            />
+                        }
+                    />
+                    <Route path='/category/:categoryType' element={<CategoryPage setLimit={setLimit} limit={limit} />} />
+                    <Route path='/builders/:builderType' element={<BuilderListing setLimit={setLimit} limit={limit} />} />
+                    <Route path='/areas/:areaListing' element={<AreaListing setLimit={setLimit} limit={limit} />} />
+                    <Route
+                        path="/property/:propertyId"
+                        element={<ListingPage />}
+                    />
+                    <Route path="/about-home-sigma" element={<About />} />
+                    <Route path="/our-team" element={<Team />} />
+                    <Route path="/faq" element={<Faq />} />
+                    <Route path="/terms-of-service" element={<TermsOfService />} />
+                    <Route path="/areas" element={<DubaiAreas />} />
+                    <Route path="/developers" element={<Developers />} />
+                </Routes>
+            </div>
+            <Footer setLimit={setLimit} />
+        </BrowserRouter>
     );
 };
 

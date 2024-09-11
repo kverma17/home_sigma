@@ -31,6 +31,25 @@ import axios from 'axios';
 //   ];
   
 const Developers = () => {
+    useEffect(() => {
+        const addGtagScript = () => {
+            const script = document.createElement('script');
+            script.async = true;
+            script.src = 'https://www.googletagmanager.com/gtag/js?id=G-P5WOMGNNSS'; 
+            document.head.appendChild(script);
+
+            const scriptContent = document.createElement('script');
+            scriptContent.innerHTML = `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-P5WOMGNNSS');
+            `;
+            document.head.appendChild(scriptContent);
+        };
+
+        addGtagScript();
+    }, []);
     const [menuData, setMenuData] = useState([]);
 
     useEffect(() => {

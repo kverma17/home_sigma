@@ -5,6 +5,25 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
 const CategoryPage = ({setLimit, limit}) => {
+    useEffect(() => {
+        const addGtagScript = () => {
+            const script = document.createElement('script');
+            script.async = true;
+            script.src = 'https://www.googletagmanager.com/gtag/js?id=G-P5WOMGNNSS'; 
+            document.head.appendChild(script);
+
+            const scriptContent = document.createElement('script');
+            scriptContent.innerHTML = `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-P5WOMGNNSS');
+            `;
+            document.head.appendChild(scriptContent);
+        };
+
+        addGtagScript();
+    }, []);
     const { categoryType } = useParams();
     console.log("categoryType>>>",categoryType)
     const [menuData, setMenuData] = useState([]);
