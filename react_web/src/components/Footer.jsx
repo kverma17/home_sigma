@@ -13,8 +13,10 @@ const Footer = ({setLimit}) => {
       <div className="footer-container">
         <div className="contact-us">
           <h3>Contact Us</h3>
-          <p><FaLocationDot/> Dubai, U.A.E</p>
-          <p><FaMailBulk/> Email: <a href="mailto:Info@homesigma.com">Info@homesigma.com</a></p>
+          <p><FaLocationDot/> Unit 3506 The Burlington Tower<br/>
+                              Marasi Dr - Business Bay - Dubai - United<br/>
+                              Arab Emirates</p>
+          <p><FaMailBulk/> Email: <a href="mailto:info@homesigma.ae">info@homesigma.ae</a></p>
           <p><FaWhatsapp /> WhatsApp: <a href="https://wa.me/971502754127">+971 50 275 4127</a></p>
           <p><FaMobile /> Phone: <a href="tel:+971502754127">+971 50 275 4127</a>, <a href="tel:+971568899896">+971 56 889 9896</a></p>
           <div className="social-icons">

@@ -40,8 +40,8 @@ const About = () => {
             <h2>Get in Touch</h2>
             <p>Whether you are a first-time buyer, seasoned investor, or property owner looking to maximize returns, contact HomeSigma Real Estate LLC today. Explore the possibilities with us and experience the difference of working with a dedicated team that puts your needs first.</p>
             <h2>Contact Information:</h2>
-            <ul><li><b>Address:</b> Dubai, U.A.E.</li>
-            <li><b>Email:</b> Info@homesigma.com</li>
+            <ul><li><b>Address:</b> Unit 3506 The Burlington Tower Marasi Dr - Business Bay - Dubai - United Arab Emirates</li>
+            <li><b>Email:</b> info@homesigma.ae</li>
             <li><b>WhatsApp:</b> +971 50 275 4127</li>
             <li><b>Phone:</b> +971 50 275 4127, +971 56 889 9896</li>
             </ul>
