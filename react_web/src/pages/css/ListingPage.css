@@ -237,9 +237,8 @@
 
 .image-gallery img {
   width: 100%;
-
   border-radius: 8px;
-  height: 650px;
+  height: 500px;
 }
 
 .image img{
